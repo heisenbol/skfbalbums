@@ -1,4 +1,4 @@
-GitHub repo to follow....
+GitHub Repo at https://github.com/sksksksk/skfbalbums
 
 THIS IS AN EXTENSION IN IT'S EALRY STAGES. TOTALLY EXPERIMENTAL
 
