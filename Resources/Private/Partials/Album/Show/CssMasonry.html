@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
+	<h1>{album.effectiveName}</h1>
+	<p>{album.effectiveDescription}</p>
+
+
+
+	<div class="tx-skfbalbums masonrywrapper">
+		<div class="tx-skfbalbums cssmasonryphotolist masonrycontainer" >
+			<f:for each="{album.photos}" as="photo">
+				<div class="tx-skfbalbums cssmasonryphotolist masonryitem">
+					<f:comment>
+					this would also work, so I do not have to use the returned CDN urls that might change
+					But the sizes are too small for "normal"
+					https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal
+					</f:comment>					
+					<img 
+						src="{fbalbum:fbImage(photo: photo, size: 'medium')}" 
+						alt="" 
+						data-jslghtbx="{fbalbum:fbImage(photo: photo, size: 'large')}" 
+						data-jslghtbx-caption="{photo.effectiveCaption}"
+						data-jslghtbx-group="group{cobjUid}">
+					</div>
+			</f:for>
+		</div>
+	</div>
+
+
+	<script src="<f:uri.resource path="Libs/jsOnlyLightbox/js/lightbox.min.js" absolute="1" />" type="text/javascript"></script>
+	<script>
+		var lightbox = new Lightbox();
+	 	lightbox.load();
+	</script>
+
+</html>
+
+

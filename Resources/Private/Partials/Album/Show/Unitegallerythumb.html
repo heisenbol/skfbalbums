@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
+	<h1>{album.effectiveName}</h1>
+	<p>{album.effectiveDescription}</p>
+
+
+	<div id="unitegallery{cobjUid}" style="display:none;">
+		
+		<f:for each="{album.photos}" as="photo">
+			<img alt="{photo.effectiveCaption}" src="{fbalbum:fbImage(photo: photo, size: 'small')}"
+				data-image="{fbalbum:fbImage(photo: photo, size: 'large')}"
+				data-description="{photo.effectiveCaption}">
+		</f:for>
+			
+	</div>
+
+
+	<script src="<f:uri.resource path="Libs/unitegallery/js/unitegallery.min.js" absolute="1" />" type="text/javascript"></script>
+	<script src="<f:uri.resource path="Libs/unitegallery/themes/default/ug-theme-default.js" absolute="1" />" type="text/javascript"></script>
+	<script>
+		jQuery(document).ready(function(){ 
+			jQuery("#unitegallery{cobjUid}").unitegallery(); 
+		}); 
+	</script>
+</html>

@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
+
+<h2>Album List</h2>
+	<ul class="tx-skfbalbums defaultalbumlist">
+		<f:for each="{albums}" as="album">
+			<li class="tx-skfbalbums defaultalbumlistalbum"
+				<h3>
+					<f:link.action action="show" arguments="{album : album}">
+						{album.effectiveName}
+					</f:link.action>
+				</h3>
+				<f:link.action action="show" arguments="{album : album}">
+					<f:comment>
+					this would also work, so I do not have to use the returned CDN urls that might change
+					But the sizes are too small for "normal"
+					https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal
+					</f:comment>
+					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium')}" alt="" />
+				</f:link.action>
+				<p>
+					{album.effectiveDescription}
+				</p>
+				<hr>
+			</li>
+		</f:for>
+	</ul>
+</html>

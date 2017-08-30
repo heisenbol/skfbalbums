@@ -1,0 +1,78 @@
+
+ <T3DataStructure>
+ <meta type="array">
+	 <langChildren>0</langChildren>
+	 <langDisable>1</langDisable>
+ </meta>
+ <ROOT>
+ 	<type>array</type>
+	 <el>
+
+		<settings.albumlayout>
+			<TCEforms>
+				<label>Album List Layout</label>
+				<config>
+					<type>select</type>
+					<items type="array">
+						<numIndex index="0" type="array">
+							<numIndex index="0">Default simple</numIndex> <!-- displayed in BE dropdown -->
+							<numIndex index="1">Default</numIndex> <!-- value in controller/view -->
+						</numIndex>
+						<numIndex index="1" type="array">
+							<numIndex index="0">Css Masonry</numIndex>
+							<numIndex index="1">CssMasonry</numIndex>
+						</numIndex>
+					</items>
+					<maxitems>1</maxitems>
+					<size>1</size>
+				</config>
+			</TCEforms>
+		</settings.albumlayout>
+
+
+		<settings.photolayout>
+			<TCEforms>
+				<label>Single Album Layout</label>
+				<config>
+					<type>select</type>
+					<items type="array">
+						<numIndex index="0" type="array">
+							<numIndex index="0">Default simple</numIndex> <!-- displayed in BE dropdown -->
+							<numIndex index="1">Default</numIndex> <!-- value in controller/view -->
+						</numIndex>
+						<numIndex index="1" type="array">
+							<numIndex index="0">Css Masonry</numIndex>
+							<numIndex index="1">CssMasonry</numIndex>
+						</numIndex>
+						<numIndex index="2" type="array">
+							<numIndex index="0">Unite Gallery Slider with Thumbnails (needs jquery in your page)</numIndex>
+							<numIndex index="1">unitegallerythumb</numIndex>
+						</numIndex>
+					</items>
+					<maxitems>1</maxitems>
+					<size>1</size>
+				</config>
+			</TCEforms>
+		</settings.photolayout>
+
+		<!--
+		 <settings.quelle>
+		 <TCEforms>
+		 <exclude>1</exclude>
+		 <label>Datenquelle</label>
+		 <config>
+		 <type>group</type>
+		 <internal_type>db</internal_type>
+		 <allowed>pages</allowed>
+		 <size>1</size>
+		 <maxitems>1</maxitems>
+		 <minitems>1</minitems>
+		 <show_thumbs>1</show_thumbs>
+		 </config>
+		 </TCEforms>
+		 </settings.quelle>
+	-->
+	 </el>
+ </ROOT>
+ </T3DataStructure>
+ 

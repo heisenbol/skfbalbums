@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T09:18:29Z" product-name="skfbalbums">
+		<header/>
+		<body>
+			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay">
+				<source>FB Albums List</source>
+			</trans-unit>
+			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay.description">
+				<source>Retrieve and display photos from Albums of a Facebook Page</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="app_id.description">
+				<source>Facebook App ID</source>
+			</trans-unit>
+			<trans-unit id="app_secret.description">
+				<source>Facebook App Secret</source>
+			</trans-unit>
+			<trans-unit id="page_id.description">
+				<source>Facebook Page ID</source>
+			</trans-unit>
+			<trans-unit id="exclude_album_ids.description">
+				<source>excludeAlbumIds</source>
+			</trans-unit>
+			<trans-unit id="include_album_ids.description">
+				<source>includeAlbumIds</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
+
+
+
+<f:comment>
+	http://w3bits.com/css-masonry/
+</f:comment>
+<h2>Album List</h2>
+<div class="tx-skfbalbums masonrywrapper">
+	<div class="tx-skfbalbums cssmasonryalbumlist masonrycontainer" >
+		<f:for each="{albums}" as="album">
+			<div class="tx-skfbalbums cssmasonryalbumlist masonryitem">
+				
+				<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium')}" alt="" />
+				
+				<p>{album.effectiveName}</p>
+				<div class='cssmasonryalbumlist hovercontainer'>
+					&nbsp;
+				</div>
+				<div class='cssmasonryalbumlist descriptioncontainer'>
+					<p>
+						<f:link.action action="show" arguments="{album : album}">
+							{album.effectiveName}
+						</f:link.action>
+					</p>
+					<hr>
+					<p>
+						<f:link.action action="show" arguments="{album : album}">
+							{album.effectiveDescription}
+						</f:link.action>
+					</p>
+				</div>
+				
+			</div>
+		</f:for>
+	</div>
+
+</div>
+
+
+</html>
+
+
+

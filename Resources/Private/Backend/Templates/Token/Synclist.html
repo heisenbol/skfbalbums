@@ -1,0 +1,22 @@
+
+<f:layout name="Default" />
+
+
+<f:section name="content">
+<h1>Facebook Tokens for Pages on this page</h1>
+<p>Click on the sync link for each token to syncrhonize Albums and Photos</p>
+<f:flashMessages />
+
+<table  class="tx_skfbalbums" style="width:100%">
+	<tr><th>Token</th><th>Albums (hidden)</th><th></th></tr>
+
+	<f:for each="{tokens}" as="token">
+		<tr>
+			<td>{token.name}</td>
+			<td>{token.albumCountNonHidden} ({token.albumCountHidden})</td>
+			<td><f:link.action action="sync" arguments="{token : token}">Sync now</f:link.action></td>
+		</tr>	
+	</f:for>
+</table>
+
+</f:section>
