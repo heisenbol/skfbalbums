@@ -257,14 +257,14 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @return int
      */
     public function getAlbumCountHidden() {
-        return $this->getAlbumCount($this->albumRepository::ONLY_HIDDEN);
+        return $this->getAlbumCount(\Skar\Skfbalbums\Domain\Repository\AlbumRepository::ONLY_HIDDEN);
     }
 
     /**
      * @return int
      */
     public function getAlbumCountNonHidden() {
-        return $this->getAlbumCount($this->albumRepository::ONLY_NONHIDDEN);
+        return $this->getAlbumCount(\Skar\Skfbalbums\Domain\Repository\AlbumRepository::ONLY_NONHIDDEN);
     }
 
 
