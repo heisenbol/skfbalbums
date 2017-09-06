@@ -43,10 +43,12 @@ DONE
 - plugin for single album display
 
 
-New in 0.0.3
+New in 0.0.4
 - restore php5.5 compatibility
 - plugin uses flexform to allow single album display 
 
+New in 0.0.3
+- nothing new. Reupload as 0.0.3 due to https://typo3.org/teams/security/security-bulletins/psa/typo3-psa-2017-001/
 
 New in 0.0.2
 - added unitegallery for single album display with default options (needs jquery)
