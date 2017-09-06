@@ -91,7 +91,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         
-
+        if (!$this->settings || !in_array('albumlayout',$this->settings) || !$this->settings['albumlayout']) {
+            $this->settings['albumlayout'] = "Default";
+        }
 
         if ($this->settings['albumlayout'] == 'Default' || $this->settings['albumlayout'] == 'CssMasonry') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
@@ -110,13 +112,19 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * action show
      *
      * @param \Skar\Skfbalbums\Domain\Model\Album $album
+     * @param bool $showBacklink
      * @return void
      */
-    public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album)
+    public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album, $showBacklink = true)
     {
         
         $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
+
+        if (!$this->settings || !in_array('photolayout',$this->settings) || !$this->settings['photolayout']) {
+            $this->settings['photolayout'] = "Default";
+        }
+
 
         if ($this->settings['photolayout'] == 'Default' || $this->settings['photolayout'] == 'CssMasonry') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
@@ -143,6 +151,44 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
         $this->view->assign('photolayout', $this->settings['photolayout']);
         $this->view->assign('album', $album);
+        $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
+    }
+
+    /**
+     * initialize action show
+     * @return void
+     */
+    public function initializeShowAction() {
+        // if there is no album parameter for the show action, retrieve it from flexform.
+        // USE switchable action with flexform
+        $album = null;
+        $showBacklink = true;
+        if($this->request->hasArgument('album')){
+            //$album=$this->albumRepository->findByUid( intval($this->request->getArgument('album')) );
+            $albumId = $this->request->getArgument('album');
+            $showBacklink = true;
+        }
+        else { // try to get it from flexform
+            if ($this->settings && array_key_exists('albumForSingle',$this->settings)) {
+                $albumId = $this->settings['albumForSingle'];
+                $showBacklink = false;
+            }
+        }
+
+        if ($albumId) {
+            $album = $this->albumRepository->findByUid( intval($albumId) );
+        }
+
+        if( $album ){
+            $this->request->setArgument('album',$album);
+            $this->request->setArgument('showBacklink',$showBacklink);
+            return;
+        }
+        else {
+            echo 'No album selected. TODO better handling';
+            exit();
+        }
+        
     }
 }

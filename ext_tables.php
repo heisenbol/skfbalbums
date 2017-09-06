@@ -10,8 +10,13 @@ call_user_func(
             'Fbalbumsdisplay',
             'FB Albums List'
         );
-
-
+/*
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'Skar.Skfbalbums',
+            'Fbalbumsdisplaysingle',
+            'FB Single Album'
+        );
+*/
         /*** FlexForm ***/
         $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey);
         $pluginSignature = strtolower($extensionName) . '_fbalbumsdisplay'; 

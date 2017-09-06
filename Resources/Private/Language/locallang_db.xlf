@@ -7,8 +7,14 @@
 				<source>FB Albums List</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay.description">
-				<source>Retrieve and display photos from Albums of a Facebook Page</source>
+				<source>Show list of Albums of a Facebook Page</source>
 			</trans-unit>
+<!--			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle">
+				<source>FB Single Album</source>
+			</trans-unit>
+			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle.description">
+				<source>Show a single Facebook Album</source>
+			</trans-unit>-->
 			<trans-unit id="tx_skfbalbums_domain_model_album">
 				<source>Album</source>
 			</trans-unit>

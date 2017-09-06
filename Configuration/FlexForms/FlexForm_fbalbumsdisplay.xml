@@ -7,10 +7,35 @@
  <ROOT>
  	<type>array</type>
 	 <el>
+	 	<!-- 
+	 		http://blog.teamgeist-medien.de/2014/02/typo3-extbase-standard-action-per-flexform-festlegen-switchablecontrolleractions.html
+	 	-->
+        <switchableControllerActions>
+            <TCEforms>
+                <label>What to display</label>
+                <onChange>reload</onChange>
+                <config>
+                    <type>select</type>
+                    <items type="array">
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">Display Album List</numIndex>
+                            <numIndex index="1">Album->list;Album->show;</numIndex>
+                        </numIndex>
+                        <numIndex index="2" type="array">
+                            <numIndex index="0">Display Single Album Photos</numIndex>
+                            <numIndex index="1">Album->show;</numIndex>
+                        </numIndex>
+                    </items>
+                </config>
+            </TCEforms>
+        </switchableControllerActions>
 
 		<settings.albumlayout>
 			<TCEforms>
 				<label>Album List Layout</label>
+		        
+                <displayCond><![CDATA[FIELD:switchableControllerActions:=:Album->list;Album->show;]]></displayCond>
+
 				<config>
 					<type>select</type>
 					<items type="array">
@@ -54,6 +79,27 @@
 				</config>
 			</TCEforms>
 		</settings.photolayout>
+
+
+
+		<settings.albumForSingle>
+			<TCEforms>
+				<label>Album for single view</label>
+                <displayCond><![CDATA[FIELD:switchableControllerActions:=:Album->show;]]></displayCond>
+
+				<config>
+					<type>select</type>
+					<itemsProcFunc>Skar\Skfbalbums\Helper\ItemsProcFunc->user_singleAlbum</itemsProcFunc>
+					<renderType>selectSingle</renderType>
+					<items>
+						<numIndex index="0" type="array">
+							<numIndex index="0"></numIndex>
+							<numIndex index="1"></numIndex>
+						</numIndex>
+					</items>
+				</config>
+			</TCEforms>
+		</settings.albumForSingle>
 
 		<!--
 		 <settings.quelle>

@@ -8,8 +8,17 @@
 
 	<f:render partial="Album/Show/{photolayout}" arguments="{album:album, cobjUid:cobjUid}" />
 
-<div>
-	<f:link.action action="list">Back to album list</f:link.action><br />
-</div>
+
+
+<f:if condition="{showBacklink}">
+	<f:then>
+		<div>
+			<f:link.action action="list">Back to album list</f:link.action><br />
+		</div>
+	</f:then>
+</f:if>
+
+
+
 </f:section>
 </html>

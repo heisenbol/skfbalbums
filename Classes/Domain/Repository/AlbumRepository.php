@@ -83,5 +83,36 @@ class AlbumRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $query->matching($query->logicalAnd($constraint))->execute();
     }
+
+    public function getAllAlbums(\Skar\Skfbalbums\Domain\Model\Token $token, $mode, $onlyCount) {
+
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true)->setIncludeDeleted(false);
+        $query->getQuerySettings()->setStoragePageIds(array($token->getPid())); // may be called from scheduler. So set here the pid to look for
+
+        $constraint[] = $query->equals('token', $token);
+        $constraint[] = $query->equals('deleted', false);
+        $constraint[] = $query->equals('pid', $token->getPid());
+
+        if ($mode == self::ONLY_HIDDEN) {
+            $constraint[] = $query->equals('hidden', true);
+        }
+        if ($mode == self::ONLY_NONHIDDEN) {
+            $constraint[] = $query->equals('hidden', false);
+        }
+
+        if ($onlyCount) {
+             return $query->matching($query->logicalAnd($constraint))->count();
+        }
+
+        return $query->matching($query->logicalAnd($constraint))->execute();
+    }
     
+    public function findAllInAllPages() {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
+
+        return $query->execute();
+    }
 }
