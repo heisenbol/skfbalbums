@@ -14,6 +14,17 @@ Quick setup
 - alternatively to the scheduler task for importing/updating albums, you can use the Backend Module to sync albums
 
 
+Unitegallery layouts needs jquery to work. You have to add it manually to your page template. E.g.
+	page.includeJS {
+	    jquery = //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
+	    jquery {
+	        forceOnTop = 1
+	        disableCompression = 1
+	        excludeFromConcatenation = 1
+		    external = 1
+	    }
+	}
+
 Questions? Contact sk(at)karasavvidis.gr
 
 
@@ -35,7 +46,6 @@ DONE
 New in 0.0.3
 - restore php5.5 compatibility
 - plugin uses flexform to allow single album display 
-
 
 
 New in 0.0.2

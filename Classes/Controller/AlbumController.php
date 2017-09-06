@@ -80,7 +80,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 //         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($data); 
 
         $albums = $this->albumRepository->findAll();
-
         foreach($albums as $album) {
             if ($album->getCoverPhotoFbId()) {
                 $album->coverPhoto = $this->photoRepository->findByFbId($album->getCoverPhotoFbId());
@@ -91,7 +90,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         
-        if (!$this->settings || !in_array('albumlayout',$this->settings) || !$this->settings['albumlayout']) {
+        if (!$this->settings || !array_key_exists('albumlayout',$this->settings) || !$this->settings['albumlayout']) {
             $this->settings['albumlayout'] = "Default";
         }
 
@@ -117,11 +116,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album, $showBacklink = true)
     {
-        
         $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
-        if (!$this->settings || !in_array('photolayout',$this->settings) || !$this->settings['photolayout']) {
+        if (!$this->settings || !array_key_exists('photolayout',$this->settings) || !$this->settings['photolayout']) {
             $this->settings['photolayout'] = "Default";
         }
 
