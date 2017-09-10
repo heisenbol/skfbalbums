@@ -30,17 +30,20 @@ Questions? Contact sk(at)karasavvidis.gr
 
 
 TODO
-- more display layouts using unitegallery
+- more display layouts using unitegallery and more options for it
 - remove css inclusion from controller to allow easier custom templates
-- clarify things with image urls that are FB CDN Urls. Maybe provide option to use redirect url instead of CDN urls
 - translations
 - remove deprecated methods for TYPO3 8 
+- provide more options on where to place the jquery code needed in case someone has jquery on the page but after my init code for unitegallery
+- a howto to create facebook app and get the app id and secret
 
 
 DONE
 - clear page caches where plugin is inserted after each sync
 - BE module to allow on demand syncs (without the scheduler) by BE users
 - plugin for single album display
+- clarify things with image urls that are FB CDN Urls. Maybe provide option to use redirect url instead of CDN urls (added option to use redirect url instead of CDN url, which results in quite low resolution thow)
+
 
 
 New in 0.0.4

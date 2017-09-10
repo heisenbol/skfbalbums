@@ -101,6 +101,15 @@
 			</TCEforms>
 		</settings.albumForSingle>
 
+
+		<settings.useFbRedirectUrls>
+			<TCEforms>
+				<label>Use Facebook redirect urls for image files instead of direct CDN urls</label>
+				<config>
+					<type>check</type>
+				</config>
+			</TCEforms>
+		</settings.useFbRedirectUrls>
 		<!--
 		 <settings.quelle>
 		 <TCEforms>

@@ -11,12 +11,7 @@
 					</f:link.action>
 				</h3>
 				<f:link.action action="show" arguments="{album : album}">
-					<f:comment>
-					this would also work, so I do not have to use the returned CDN urls that might change
-					But the sizes are too small for "normal"
-					https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal
-					</f:comment>
-					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium')}" alt="" />
+					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				</f:link.action>
 				<p>
 					{album.effectiveDescription}

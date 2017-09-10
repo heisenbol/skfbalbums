@@ -7,14 +7,10 @@
 	</f:comment>
 
 	<f:for each="{album.photos}" as="photo">
-		<f:comment>
-		this would also work, so I do not have to use the returned CDN urls that might change
-		But the sizes are too small for "normal"
-		https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal
-		</f:comment>
+
 		<div style="display:inline-block">
-			<a href="{fbalbum:fbImage(photo: photo, size: 'large')}" target="_blank">
-				<img src="{fbalbum:fbImage(photo: photo, size: 'small')}" alt="" />
+			<a href="{fbalbum:fbImage(photo: photo, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" target="_blank">
+				<img src="{fbalbum:fbImage(photo: photo, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				<f:comment><br>{photo.effectiveCaption}</f:comment>
 			</a>
 		</div>

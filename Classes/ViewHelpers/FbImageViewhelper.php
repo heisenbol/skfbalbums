@@ -8,9 +8,10 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 	/**
 	* @param \Skar\Skfbalbums\Domain\Model\Photo $photo
 	* @param string $size
+	* @param bool $useFbRedirectUrls
 	* @return string
 	*/
-	public function render($photo, $size = 'medium') {
+	public function render($photo, $size = 'medium', $useFbRedirectUrls = FALSE) {
 		//$uriBuilder = $this->controllerContext->getUriBuilder();
 
 
@@ -24,9 +25,21 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		if ($photo && $photo->getImages()) {
 			$imagesArray = json_decode($photo->getImages(), true);
 			if ($imagesArray && is_array($imagesArray) && count($imagesArray) > 0) {
-				$result = $this->getSizedImageUrl($imagesArray, $size);
+				if ($useFbRedirectUrls) {
+					// 		https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal 
+					$fbId = $photo->getFacebookId();
+					// for album photos, only up to "normal" is supported, which is quite low resolution
+					if ($size == 'small') {
+						return "https://graph.facebook.com/$fbId/picture?type=thumbnail";
+					}
+					return "https://graph.facebook.com/$fbId/picture?type=normal";
+				}
+				else {
+					$result = $this->getSizedImageUrl($imagesArray, $size);
+				}
 			}
 		}
+
 		return $result; // the viewhelper itself does not print enything
 	}
 

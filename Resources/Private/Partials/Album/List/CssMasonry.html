@@ -12,7 +12,7 @@
 		<f:for each="{albums}" as="album">
 			<div class="tx-skfbalbums cssmasonryalbumlist masonryitem">
 				
-				<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium')}" alt="" />
+				<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				
 				<p>{album.effectiveName}</p>
 				<div class='cssmasonryalbumlist hovercontainer'>

@@ -9,15 +9,11 @@
 		<div class="tx-skfbalbums cssmasonryphotolist masonrycontainer" >
 			<f:for each="{album.photos}" as="photo">
 				<div class="tx-skfbalbums cssmasonryphotolist masonryitem">
-					<f:comment>
-					this would also work, so I do not have to use the returned CDN urls that might change
-					But the sizes are too small for "normal"
-					https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal
-					</f:comment>					
+				
 					<img 
-						src="{fbalbum:fbImage(photo: photo, size: 'medium')}" 
+						src="{fbalbum:fbImage(photo: photo, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" 
 						alt="" 
-						data-jslghtbx="{fbalbum:fbImage(photo: photo, size: 'large')}" 
+						data-jslghtbx="{fbalbum:fbImage(photo: photo, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" 
 						data-jslghtbx-caption="{photo.effectiveCaption}"
 						data-jslghtbx-group="group{cobjUid}">
 					</div>

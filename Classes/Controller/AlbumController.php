@@ -105,6 +105,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
         $this->view->assign('albumlayout', $this->settings['albumlayout']);
         $this->view->assign('albums', $albums);
+        $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
     }
 
     /**
@@ -116,6 +117,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album, $showBacklink = true)
     {
+        
         $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
@@ -151,6 +153,8 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('album', $album);
         $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
+        $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
+//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $this->settings); 
     }
 
     /**
