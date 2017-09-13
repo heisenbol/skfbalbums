@@ -132,7 +132,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
         if ($this->settings['photolayout'] == 'Default' || $this->settings['photolayout'] == 'CssMasonry') {
-            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump('aaaa'); 
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
@@ -142,41 +141,108 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Libs/jsOnlyLightbox/css/lightbox.css" />');
         }
+        $uniteOptions = [];
         if ($this->settings['photolayout'] == 'unitegallerythumb') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Libs/unitegallery/css/unite-gallery.css" />');
+                . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.css" />');
-            
-            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterLibrary ($name, $file, $type= 'text/javascript', $compress=false, $forceOnTop=false, $allWrap= '', $excludeFromConcatenation=false, $splitChar= '|', $async=false, $integrity= '')
-            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($jsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+                . 'Resources/Public/Libs/unitegallery/css/unite-gallery.css" />');
+
+            if (!$this->settings || !array_key_exists('unitetheme',$this->settings) || !$this->settings['unitetheme'] 
+                || !in_array(
+                    $this->settings['unitetheme'], 
+                    ['default','tilescolumns','tilesjustified','tilesnested','tilesgrid','carousel','compact','gridtheme','slider']
+                    )
+                ) {
+                $this->settings['unitetheme'] = "default";
+            }
 
 
-            $uniteInitJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Js/Layouts/'.$this->settings['photolayout'].'/uniteinit.js';
+
 
             $uniteLibJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Libs/unitegallery/js/unitegallery.min.js';
 
-            $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.js';
 
             $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitelib", $uniteLibJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
-            $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitethemelib", $uniteLibThemeJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+    
 
+            $uniteTheme = $this->settings['unitetheme'];
+            $uniteLibThemeJsFile = null;
+            if ($uniteTheme == 'default') {
+                $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
+                    . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.css" />');
+
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.js';
+            }
+            else if ($uniteTheme == 'tilescolumns') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                $uniteOptions['gallery_theme'] = "tiles";
+
+            }
+            else if ($uniteTheme == 'tilesjustified') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                $uniteOptions['gallery_theme'] = "tiles";
+                $uniteOptions['tiles_type'] = "justified";
+            }
+            else if ($uniteTheme == 'tilesnested') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                $uniteOptions['gallery_theme'] = "tiles";
+                $uniteOptions['tiles_type'] = "nested";
+            }
+            else if ($uniteTheme == 'tilesgrid') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js';
+                $uniteOptions['gallery_theme'] = "tilesgrid";
+            }
+            else if ($uniteTheme == 'carousel') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/carousel/ug-theme-carousel.js';
+                $uniteOptions['gallery_theme'] = "carousel";
+            }
+            else if ($uniteTheme == 'compact') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/compact/ug-theme-compact.js';
+                $uniteOptions['gallery_theme'] = "compact";
+            }
+            else if ($uniteTheme == 'gridtheme') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/grid/ug-theme-grid.js';
+                $uniteOptions['gallery_theme'] = "grid";
+            }
+            else if ($uniteTheme == 'slider') {
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                    . 'Resources/Public/Libs/unitegallery/themes/slider/ug-theme-slider.js';
+                $uniteOptions['gallery_theme'] = "slider";
+            }
+            if ($uniteLibThemeJsFile) {
+                $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitethemelib".$uniteTheme, $uniteLibThemeJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+            }
+            
+            $uniteInitJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                . 'Resources/Public/Js/Layouts/'.$this->settings['photolayout'].'/uniteinit.js';
             $this->pageRenderer->addJsFooterFile($uniteInitJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterLibrary ($name, $file, $type= 'text/javascript', $compress=false, $forceOnTop=false, $allWrap= '', $excludeFromConcatenation=false, $splitChar= '|', $async=false, $integrity= '')
+            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($jsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
 
         }
     
+//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( json_encode($uniteOptions, JSON_FORCE_OBJECT)); 
 
 
         $this->addCacheTags('tx_skfbalbums_domain_model_album_'.$album->getUid()); // the database table name of your domain model plus the UID of your record
-
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
         $this->view->assign('photolayout', $this->settings['photolayout']);
         $this->view->assign('album', $album);
+        $this->view->assign('uniteOptions', json_encode($uniteOptions, JSON_FORCE_OBJECT));
+        $this->view->assign('skata', 'skata1');
         $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);

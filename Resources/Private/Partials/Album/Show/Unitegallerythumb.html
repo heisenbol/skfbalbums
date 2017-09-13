@@ -3,8 +3,8 @@
 	<h1>{album.effectiveName}</h1>
 	<p>{album.effectiveDescription}</p>
 
-
-	<div id="unitegallery{cobjUid}" style="display:none;">
+ 
+	<div id="unitegallery{cobjUid}" style="display:none;" class="skfbalbumsunitegallery">
 		
 		<f:for each="{album.photos}" as="photo">
 			<img alt="{photo.effectiveCaption}" src="{fbalbum:fbImage(photo: photo, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}"
@@ -18,8 +18,11 @@
 	<script>
 		if (typeof skfbalbumsUnite == 'undefined') {
 			var skfbalbumsUnite = [];
+			var skfbalbumsUniteOptions = [];
 		}
+		
 		skfbalbumsUnite.push("#unitegallery{cobjUid}");
+		skfbalbumsUniteOptions.push(<f:format.raw>{uniteOptions}</f:format.raw>);
 
 	</script>
 </html>

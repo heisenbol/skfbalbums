@@ -15,6 +15,7 @@ THIS IS AN EXTENSION IN IT'S EALRY STAGES. TOTALLY EXPERIMENTAL
 
 
 Unitegallery layouts needs jquery to work. You have to add it manually to your page template. E.g.
+
     page.includeJS {
         jquery = //ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
         jquery {
