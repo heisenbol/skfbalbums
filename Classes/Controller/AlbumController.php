@@ -41,6 +41,11 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $tokenRepository = null;
 
 
+    /**
+     * @var \TYPO3\CMS\Core\Page\PageRenderer
+     * @inject
+     */
+    protected $pageRenderer;
 
     /**
      * photoRepository
@@ -127,9 +132,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
         if ($this->settings['photolayout'] == 'Default' || $this->settings['photolayout'] == 'CssMasonry') {
+            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump('aaaa'); 
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
+                . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
         }
         if ($this->settings['photolayout'] == 'CssMasonry') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
@@ -143,8 +149,28 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.css" />');
+            
+            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterLibrary ($name, $file, $type= 'text/javascript', $compress=false, $forceOnTop=false, $allWrap= '', $excludeFromConcatenation=false, $splitChar= '|', $async=false, $integrity= '')
+            //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($jsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+
+
+            $uniteInitJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                . 'Resources/Public/Js/Layouts/'.$this->settings['photolayout'].'/uniteinit.js';
+
+            $uniteLibJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                . 'Resources/Public/Libs/unitegallery/js/unitegallery.min.js';
+
+            $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
+                . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.js';
+
+            $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitelib", $uniteLibJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+            $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitethemelib", $uniteLibThemeJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
+
+            $this->pageRenderer->addJsFooterFile($uniteInitJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
 
         }
+    
+
 
         $this->addCacheTags('tx_skfbalbums_domain_model_album_'.$album->getUid()); // the database table name of your domain model plus the UID of your record
 
