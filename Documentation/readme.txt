@@ -35,7 +35,10 @@ TODO
 - translations
 - remove deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
+- add a "raw" display mode that outputs just raw data to be easily customized
 
+New in 0.0.6-dev
+-
 
 New in 0.0.5
 - option to use redirect urls for images to leverage Facebook CDN. Results in smaller images!
