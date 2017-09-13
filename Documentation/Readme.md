@@ -44,6 +44,7 @@ GitHub Repo at https://github.com/sksksksk/skfbalbums
 0.0.6-dev
 - bump extension state to alpha
 - added theme selection to unite gallery
+- allow additional custom params for unite gallery
 
 0.0.5
 - option to use redirect urls for images to leverage Facebook CDN. Results in smaller images!
