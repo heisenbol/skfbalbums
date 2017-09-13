@@ -31,9 +31,8 @@ Questions? Contact sk(at)karasavvidis.gr
 
 
 TODO
-- more display layouts using unitegallery and more themes / options for it
-- remove css inclusion from controller to allow easier custom templates
 - translations
+- remove css inclusion from controller to allow easier custom templates
 - remove deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
 - add a "raw" display mode that outputs just raw data to be easily customized
@@ -44,6 +43,7 @@ GitHub Repo at https://github.com/sksksksk/skfbalbums
 # Changelog
 0.0.6-dev
 - bump extension state to alpha
+- added theme selection to unite gallery
 
 0.0.5
 - option to use redirect urls for images to leverage Facebook CDN. Results in smaller images!

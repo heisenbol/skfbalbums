@@ -232,6 +232,20 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterLibrary ($name, $file, $type= 'text/javascript', $compress=false, $forceOnTop=false, $allWrap= '', $excludeFromConcatenation=false, $splitChar= '|', $async=false, $integrity= '')
             //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($jsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
 
+            if (!$this->settings || !array_key_exists('uniteparams',$this->settings) || !$this->settings['uniteparams'] ) {
+                $this->settings['uniteparams'] = "";
+            }
+            
+            if (trim($this->settings['uniteparams'])) {
+                $additionalParams = preg_split("/\r\n|\n|\r/", $this->settings['uniteparams']);
+                foreach($additionalParams as $additionalParam) {
+                    $parts = explode(':', $additionalParam);
+                    if (count($parts) == 2) {
+                        $uniteOptions[trim($parts[0])] = trim($parts[1]);
+                    }
+                }
+            }
+
         }
     
 //        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( json_encode($uniteOptions, JSON_FORCE_OBJECT)); 

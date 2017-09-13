@@ -133,11 +133,10 @@
 
 		<settings.uniteparams>
 			<TCEforms>
-				<label>Unite Gallery Theme</label>
+				<label>Unite Gallery additional params. One per line of the form name:value without quotes</label>
                 <displayCond><![CDATA[FIELD:settings.photolayout:=:unitegallerythumb]]></displayCond>
 				<config>
 					<type>text</type>
-					
 				</config>
 			</TCEforms>
 		</settings.uniteparams>
