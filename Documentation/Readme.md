@@ -30,21 +30,81 @@ Questions? Contact sk(at)karasavvidis.gr
 
 
 
-TODO
+# TODO
 - translations
-- remove css inclusion from controller to allow easier custom templates
 - remove deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
-- add a "raw" display mode that outputs just raw data to be easily customized
+- some loggin for sync process and outbput in manual sync
+
+# Change templates
+You can override the template paths to adapt the look and feel of the display. 
+
+Here is a quick howto:
+
+## Album List
+The album list supports as layout
+- Default
+- CssMasonry
+- Raw
+
+You can change each one of them, or only a specific one. The best one would be to change the the Raw layout. The others add custom css to the page, which is probably undesired.
+
+The album list uses the following files
+Templates/Album/List.html
+Partials/Album/List/ALBUM_LIST_LAYOUT_SET_IN_PLUGIN.html
+
+The List.html just includes the Partials/Album/List/ALBUM_LIST_LAYOUT_SET_IN_PLUGIN.html file. So it should suffice to just add your own version.
+
+Let's say you want to change the Raw layout of the album list. Under fileadmin, create the following folders and files
+fileadmin/skfbalbumoverrides/Partials/Album/
+fileadmin/skfbalbumoverrides/Partials/Album/Raw.html
+
+Take the extension's typo3conf/ext/skfbalbumoverrides/Partials/Album/Raw.html file content and add it to your own Raw.html file you just created.
+
+In your Template setup, add the following
+
+    plugin.tx_skfbalbums_fbalbumsdisplay {
+        view {
+            partialRootPaths.30 = fileadmin/skfbalbumoverrides/Partials/
+        }
+    }
+
+Now instead of using the extensions Raw.html file, it will use your own Raw.html file and any changes you have made to it. You will probably need some custom css file and/or JavaScript, which should be included into your template.
+
+To get the URL for the album cover photo, you can use the following viewhelper
+{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}
+
+The size property takes the as value small, medium and large. From the available image versions that Facebook returns, it tries to find a suitable size and return it's url.
+
+Please keep in mind that if you set to use Facebook redirect urls, the images returned by Facebook are rather small in dimensions.
+
+## Single Album Photos
+The album list supports as layout
+- Default
+- CssMasonry
+- Unitegallery
+- Raw
+
+The process is similar to changing the layout of the album list. For overriding the Raw layout, you will need a file
+
+Partials/Album/Show/ALBUM_SHOW_LAYOUT_SET_IN_PLUGIN.html
+
+Similar to the album list, the viewhelper to return an image source is
+
+{fbalbum:fbImage(photo: photo, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}
+
 
 # Code
 GitHub Repo at https://github.com/sksksksk/skfbalbums
 
 # Changelog
-0.0.6-dev
+0.0.6
 - bump extension state to alpha
 - added theme selection to unite gallery
 - allow additional custom params for unite gallery
+- added Raw layout and added some documentation on how to override it
+- removed some TYPO 8 deprecated calls
+- some renaming of files
 
 0.0.5
 - option to use redirect urls for images to leverage Facebook CDN. Results in smaller images!

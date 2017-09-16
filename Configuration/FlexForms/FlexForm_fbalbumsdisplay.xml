@@ -40,12 +40,16 @@
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">Default simple</numIndex> <!-- displayed in BE dropdown -->
-							<numIndex index="1">Default</numIndex> <!-- value in controller/view -->
+							<numIndex index="0">Default simple</numIndex>
+							<numIndex index="1">Default</numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
 							<numIndex index="0">Css Masonry</numIndex>
 							<numIndex index="1">CssMasonry</numIndex>
+						</numIndex>
+						<numIndex index="2" type="array">
+							<numIndex index="0">Raw output</numIndex>
+							<numIndex index="1">Raw</numIndex>
 						</numIndex>
 					</items>
 					<maxitems>1</maxitems>
@@ -67,12 +71,16 @@
 							<numIndex index="1">Default</numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">Css Masonry</numIndex>
+							<numIndex index="0">Css Masonry with Lightbox</numIndex>
 							<numIndex index="1">CssMasonry</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">Unite Gallery Slider with Thumbnails (needs jquery in your page)</numIndex>
-							<numIndex index="1">unitegallerythumb</numIndex>
+							<numIndex index="0">Unite Gallery (needs jquery in your page)</numIndex>
+							<numIndex index="1">Unitegallery</numIndex>
+						</numIndex>
+						<numIndex index="3" type="array">
+							<numIndex index="0">Raw output</numIndex>
+							<numIndex index="1">raw</numIndex>
 						</numIndex>
 					</items>
 					<maxitems>1</maxitems>
@@ -84,7 +92,7 @@
 		<settings.unitetheme>
 			<TCEforms>
 				<label>Unite Gallery Theme</label>
-                <displayCond><![CDATA[FIELD:settings.photolayout:=:unitegallerythumb]]></displayCond>
+                <displayCond><![CDATA[FIELD:settings.photolayout:=:Unitegallery]]></displayCond>
 				<config>
 					<type>select</type>
 					<items type="array">
@@ -134,7 +142,7 @@
 		<settings.uniteparams>
 			<TCEforms>
 				<label>Unite Gallery additional params. One per line of the form name:value without quotes</label>
-                <displayCond><![CDATA[FIELD:settings.photolayout:=:unitegallerythumb]]></displayCond>
+                <displayCond><![CDATA[FIELD:settings.photolayout:=:Unitegallery]]></displayCond>
 				<config>
 					<type>text</type>
 				</config>

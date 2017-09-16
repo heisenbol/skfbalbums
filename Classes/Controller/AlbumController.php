@@ -142,13 +142,13 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 . 'Resources/Public/Libs/jsOnlyLightbox/css/lightbox.css" />');
         }
         $uniteOptions = [];
-        if ($this->settings['photolayout'] == 'unitegallerythumb') {
+        if ($this->settings['photolayout'] == 'Unitegallery') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Libs/unitegallery/css/unite-gallery.css" />');
+                . 'Resources/Public/Libs/Unitegallery/css/unite-gallery.css" />');
 
             if (!$this->settings || !array_key_exists('unitetheme',$this->settings) || !$this->settings['unitetheme'] 
                 || !in_array(
@@ -163,7 +163,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
             $uniteLibJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                . 'Resources/Public/Libs/unitegallery/js/unitegallery.min.js';
+                . 'Resources/Public/Libs/Unitegallery/js/unitegallery.min.js';
 
 
             $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitelib", $uniteLibJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
@@ -174,52 +174,52 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             if ($uniteTheme == 'default') {
                 $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                     . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.css" />');
+                    . 'Resources/Public/Libs/Unitegallery/themes/default/ug-theme-default.css" />');
 
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/default/ug-theme-default.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/default/ug-theme-default.js';
             }
             else if ($uniteTheme == 'tilescolumns') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
 
             }
             else if ($uniteTheme == 'tilesjustified') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
                 $uniteOptions['tiles_type'] = "justified";
             }
             else if ($uniteTheme == 'tilesnested') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/tiles/ug-theme-tiles.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
                 $uniteOptions['tiles_type'] = "nested";
             }
             else if ($uniteTheme == 'tilesgrid') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js';
                 $uniteOptions['gallery_theme'] = "tilesgrid";
             }
             else if ($uniteTheme == 'carousel') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/carousel/ug-theme-carousel.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/carousel/ug-theme-carousel.js';
                 $uniteOptions['gallery_theme'] = "carousel";
             }
             else if ($uniteTheme == 'compact') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/compact/ug-theme-compact.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/compact/ug-theme-compact.js';
                 $uniteOptions['gallery_theme'] = "compact";
             }
             else if ($uniteTheme == 'gridtheme') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/grid/ug-theme-grid.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/grid/ug-theme-grid.js';
                 $uniteOptions['gallery_theme'] = "grid";
             }
             else if ($uniteTheme == 'slider') {
                 $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
-                    . 'Resources/Public/Libs/unitegallery/themes/slider/ug-theme-slider.js';
+                    . 'Resources/Public/Libs/Unitegallery/themes/slider/ug-theme-slider.js';
                 $uniteOptions['gallery_theme'] = "slider";
             }
             if ($uniteLibThemeJsFile) {
