@@ -34,7 +34,7 @@ Questions? Contact sk(at)karasavvidis.gr
 - translations
 - remove deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
-- some loggin for sync process and outbput in manual sync
+- some logging for sync process and outbput in manual sync
 
 # Change templates
 You can override the template paths to adapt the look and feel of the display. 
