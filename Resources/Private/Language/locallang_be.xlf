@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T09:18:29Z" product-name="skfbalbums">
+		<header/>
+		<body>
+
+			<trans-unit id="pi1_title">
+				<source>FB Page Albums</source>
+			</trans-unit>
+			<trans-unit id="scheduler_title">
+				<source>Sync Facebook Page Albums</source>
+			</trans-unit>
+			<trans-unit id="scheduler_description">
+				<source>Syncs Facebook Page Albums and Photos</source>
+			</trans-unit>
+			<trans-unit id="scheduler_pageidstoinclude">
+				<source>TYPO3 Page Ids to include. Comma separated. Leave blank for all.</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

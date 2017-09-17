@@ -12,7 +12,7 @@ return [
             'disabled' => 'hidden',
         ],
 		'searchFields' => 'name,description,name_override,description_override,facebook_id,link,cover_photo_fb_id,last_synced,token',
-        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_album.gif'
+        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_album.svg'
     ],
     'interface' => [
 		'showRecordFieldList' => 'hidden, name, description, name_override, description_override, facebook_id, link, cover_photo_fb_id, last_synced, token',
@@ -46,8 +46,9 @@ return [
 	        'exclude' => false,
 	        'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_album.description',
 	        'config' => [
-			    'type' => 'input',
-			    'size' => 30,
+			    'type' => 'text',
+			    'cols' => 40,
+			    'rows' => 15,
 			    'eval' => 'trim'
 			],
 	    ],
@@ -64,8 +65,9 @@ return [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_album.description_override',
 	        'config' => [
-			    'type' => 'input',
-			    'size' => 30,
+			    'type' => 'text',
+			    'cols' => 40,
+			    'rows' => 15,
 			    'eval' => 'trim'
 			],
 	    ],

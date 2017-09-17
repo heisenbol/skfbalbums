@@ -7,7 +7,35 @@
 				<source>FB Albums</source>
 			</trans-unit>
 			<trans-unit id="mlang_labels_tabdescr">
-				<source>moduledescrptioncccc descr descr descr descr descr descr</source>
+				<source>Allows to sync albums and photos of specific Facebook Page Tokens. Extension skfbalbums</source>
+			</trans-unit>
+			<trans-unit id="heading">
+				<source>Facebook Tokens for Pages on this page</source>
+			</trans-unit>
+			<trans-unit id="instructions">
+				<source>Click on the sync link for each token to syncrhonize Albums and Photos</source>
+			</trans-unit>
+			<trans-unit id="tokenheading">
+				<source>Token</source>
+			</trans-unit>
+			<trans-unit id="albumsheading">
+				<source>Albums (hidden)</source>
+			</trans-unit>
+			<trans-unit id="synclinktext">
+				<source>Sync now</source>
+			</trans-unit>
+
+			<trans-unit id="syncresultheading">
+				<source>Synchronization result for Facebook Token</source>
+			</trans-unit>
+			<trans-unit id="syncresultimported">
+				<source>Albums Imported</source>
+			</trans-unit>
+			<trans-unit id="syncresultupdated">
+				<source>Albums Updated</source>
+			</trans-unit>
+			<trans-unit id="syncresulthidden">
+				<source>Albums Hidden</source>
 			</trans-unit>
 		</body>
 	</file>

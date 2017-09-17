@@ -12,7 +12,7 @@ return [
             'disabled' => 'hidden',
         ],
 		'searchFields' => 'facebook_id,images,caption,caption_override,album',
-        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_photo.gif'
+        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_photo.svg'
     ],
     'interface' => [
 		'showRecordFieldList' => 'hidden, facebook_id, images, caption, caption_override, album',

@@ -20,7 +20,7 @@ class SyncTokens extends \TYPO3\CMS\Scheduler\Task\AbstractTask implements \TYPO
 
         $additionalFields[$fieldId] = array(
             'code' => $fieldHtml,
-            'label' => 'Page Ids to include. Comma separated. Leave blank for all.',
+            'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:scheduler_pageidstoinclude',
             'cshKey' => '_MOD_tools_txschedulerM1',
             'cshLabel' => $fieldId
         );

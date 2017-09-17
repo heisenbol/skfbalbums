@@ -32,9 +32,12 @@ Questions? Contact sk(at)karasavvidis.gr
 
 # TODO
 - translations
-- remove deprecated methods for TYPO3 8 
+- remove more deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
-- some logging for sync process and outbput in manual sync
+- some loging for sync process and outbput in manual sync
+- in single album view, make sure only albums on pages with access from the user are shown
+- better documentation describing all options and sync process
+- monitor https://forge.typo3.org/issues/81021 which prevents having 2 plugins on same page
 
 # Change templates
 You can override the template paths to adapt the look and feel of the display. 
@@ -98,6 +101,11 @@ Similar to the album list, the viewhelper to return an image source is
 GitHub Repo at https://github.com/sksksksk/skfbalbums
 
 # Changelog
+0.0.7-dev
+- clean up translation files
+- add icons for BE module and plugin
+
+
 0.0.6
 - bump extension state to alpha
 - added theme selection to unite gallery

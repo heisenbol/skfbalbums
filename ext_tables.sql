@@ -7,9 +7,9 @@ CREATE TABLE tx_skfbalbums_domain_model_album (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
-	description varchar(255) DEFAULT '' NOT NULL,
+	description text,
 	name_override varchar(255) DEFAULT '' NOT NULL,
-	description_override varchar(255) DEFAULT '' NOT NULL,
+	description_override text,
 	facebook_id varchar(255) DEFAULT '' NOT NULL,
 	link varchar(255) DEFAULT '' NOT NULL,
 	cover_photo_fb_id varchar(255) DEFAULT '' NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE tx_skfbalbums_domain_model_photo (
 
 	facebook_id varchar(255) DEFAULT '' NOT NULL,
 	images text NOT NULL,
-	caption text NOT NULL,
+	caption text,
 	caption_override text NOT NULL,
 	album int(11) unsigned DEFAULT '0',
 

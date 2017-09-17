@@ -3,86 +3,8 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T09:18:29Z" product-name="skfbalbums">
 		<header/>
 		<body>
-			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay">
-				<source>FB Albums List</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay.description">
-				<source>Show list of Albums of a Facebook Page</source>
-			</trans-unit>
-<!--			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle">
-				<source>FB Single Album</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle.description">
-				<source>Show a single Facebook Album</source>
-			</trans-unit>-->
-			<trans-unit id="tx_skfbalbums_domain_model_album">
-				<source>Album</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.name">
-				<source>Name</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.description">
-				<source>Description</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.name_override">
-				<source>Name Override</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.description_override">
-				<source>Description Override</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.facebook_id">
-				<source>Facebook Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.link">
-				<source>Link</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.cover_photo_fb_id">
-				<source>Cover Photo Fb Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.last_synced">
-				<source>Last Synced</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_album.token">
-				<source>Token</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token">
-				<source>Token</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.name">
-				<source>Name</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.app_id">
-				<source>App Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.app_secret">
-				<source>App Secret</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.page_id">
-				<source>Page Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.exclude_album_ids">
-				<source>Exclude Album Ids</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.include_album_ids">
-				<source>Include Album Ids</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo">
-				<source>Photo</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo.facebook_id">
-				<source>Facebook Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo.images">
-				<source>Images</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo.caption">
-				<source>Caption</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo.caption_override">
-				<source>Caption Override</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_photo.album">
-				<source>Album</source>
+			<trans-unit id="tx_skfbalbums_albumlistlinktext">
+				<source>Album list</source>
 			</trans-unit>
 		</body>
 	</file>

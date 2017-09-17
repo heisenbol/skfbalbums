@@ -10,7 +10,7 @@ return [
 		'enablecolumns' => [
         ],
 		'searchFields' => 'name,app_id,app_secret,page_id,exclude_album_ids,include_album_ids',
-        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_token.gif'
+        'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_token.svg'
     ],
     'interface' => [
 		'showRecordFieldList' => 'name, app_id, app_secret, page_id, exclude_album_ids, include_album_ids',

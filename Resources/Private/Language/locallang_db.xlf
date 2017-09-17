@@ -3,20 +3,16 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T09:18:29Z" product-name="skfbalbums">
 		<header/>
 		<body>
+
 			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay">
-				<source>FB Albums List</source>
+				<source>FB Page Albums</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplay.description">
-				<source>Show list of Albums of a Facebook Page</source>
+				<source>Show photo albums of a Facebook Page</source>
 			</trans-unit>
-<!--			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle">
-				<source>FB Single Album</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_fbalbumsdisplaysingle.description">
-				<source>Show a single Facebook Album</source>
-			</trans-unit>-->
+
 			<trans-unit id="tx_skfbalbums_domain_model_album">
-				<source>Album</source>
+				<source>Facebook Page Album</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_album.name">
 				<source>Name</source>
@@ -34,7 +30,7 @@
 				<source>Facebook Id</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_album.link">
-				<source>Link</source>
+				<source>Facebook Link</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_album.cover_photo_fb_id">
 				<source>Cover Photo Fb Id</source>
@@ -43,10 +39,11 @@
 				<source>Last Synced</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_album.token">
-				<source>Token</source>
+				<source>Facebook App Token</source>
 			</trans-unit>
+
 			<trans-unit id="tx_skfbalbums_domain_model_token">
-				<source>Token</source>
+				<source>Facebook App Token</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_token.name">
 				<source>Name</source>
@@ -58,7 +55,7 @@
 				<source>App Secret</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_token.page_id">
-				<source>Page Id</source>
+				<source>Facebook Page Id</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_token.exclude_album_ids">
 				<source>Exclude Album Ids</source>
@@ -66,8 +63,9 @@
 			<trans-unit id="tx_skfbalbums_domain_model_token.include_album_ids">
 				<source>Include Album Ids</source>
 			</trans-unit>
+
 			<trans-unit id="tx_skfbalbums_domain_model_photo">
-				<source>Photo</source>
+				<source>Facebook Photo</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_photo.facebook_id">
 				<source>Facebook Id</source>
@@ -82,7 +80,7 @@
 				<source>Caption Override</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_photo.album">
-				<source>Album</source>
+				<source>Facebook Page Album</source>
 			</trans-unit>
 		</body>
 	</file>
