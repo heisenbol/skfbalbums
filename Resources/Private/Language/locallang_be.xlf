@@ -16,6 +16,50 @@
 			<trans-unit id="scheduler_pageidstoinclude">
 				<source>TYPO3 Page Ids to include. Comma separated. Leave blank for all.</source>
 			</trans-unit>
+			<trans-unit id="flexforms.album_list">
+				<source>Display Album List</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single">
+				<source>Display Single Album Photos</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.album_list.layoutdefault">
+				<source>Plain</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_list.layoutcssmasonry">
+				<source>Css Masonry</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_list.layoutraw">
+				<source>Raw output</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.album_single.layoutdefault">
+				<source>Plain</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.layoutcssmasonry">
+				<source>Css Masonry with Lightbox</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.layoutunite">
+				<source>Unite Gallery (needs jquery in your page)</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.layoutraw">
+				<source>Raw output</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.album_single.unitesettings">
+				<source>Unite Gallery Theme</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.unitesettingsadditional">
+				<source>Unite Gallery additional params. One per line of the form name:value without quotes</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.album_single.selectalbum">
+				<source>Album for single view</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.facebookredirecturls">
+				<source>Use Facebook redirect urls for image files instead of direct CDN urls</source>
+			</trans-unit>
 
 		</body>
 	</file>

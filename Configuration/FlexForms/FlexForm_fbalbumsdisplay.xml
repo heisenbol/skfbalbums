@@ -18,11 +18,11 @@
                     <type>select</type>
                     <items type="array">
                         <numIndex index="1" type="array">
-                            <numIndex index="0">Display Album List</numIndex>
+                            <numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list</numIndex>
                             <numIndex index="1">Album->list;Album->show;</numIndex>
                         </numIndex>
                         <numIndex index="2" type="array">
-                            <numIndex index="0">Display Single Album Photos</numIndex>
+                            <numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single</numIndex>
                             <numIndex index="1">Album->show;</numIndex>
                         </numIndex>
                     </items>
@@ -40,15 +40,15 @@
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">Default simple</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutdefault</numIndex>
 							<numIndex index="1">Default</numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">Css Masonry</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutcssmasonry</numIndex>
 							<numIndex index="1">CssMasonry</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">Raw output</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutraw</numIndex>
 							<numIndex index="1">Raw</numIndex>
 						</numIndex>
 					</items>
@@ -67,19 +67,19 @@
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">Default simple</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutdefault</numIndex>
 							<numIndex index="1">Default</numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">Css Masonry with Lightbox</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutcssmasonry</numIndex>
 							<numIndex index="1">CssMasonry</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">Unite Gallery (needs jquery in your page)</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutunite</numIndex>
 							<numIndex index="1">Unitegallery</numIndex>
 						</numIndex>
 						<numIndex index="3" type="array">
-							<numIndex index="0">Raw output</numIndex>
+							<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutraw</numIndex>
 							<numIndex index="1">raw</numIndex>
 						</numIndex>
 					</items>
@@ -91,7 +91,7 @@
 
 		<settings.unitetheme>
 			<TCEforms>
-				<label>Unite Gallery Theme</label>
+				<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.unitesettings</label>
                 <displayCond><![CDATA[FIELD:settings.photolayout:=:Unitegallery]]></displayCond>
 				<config>
 					<type>select</type>
@@ -141,7 +141,7 @@
 
 		<settings.uniteparams>
 			<TCEforms>
-				<label>Unite Gallery additional params. One per line of the form name:value without quotes</label>
+				<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.unitesettingsadditional</label>
                 <displayCond><![CDATA[FIELD:settings.photolayout:=:Unitegallery]]></displayCond>
 				<config>
 					<type>text</type>
@@ -151,7 +151,7 @@
 
 		<settings.albumForSingle>
 			<TCEforms>
-				<label>Album for single view</label>
+				<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.selectalbum</label>
                 <displayCond><![CDATA[FIELD:switchableControllerActions:=:Album->show;]]></displayCond>
 
 				<config>
@@ -171,7 +171,7 @@
 
 		<settings.useFbRedirectUrls>
 			<TCEforms>
-				<label>Use Facebook redirect urls for image files instead of direct CDN urls</label>
+				<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.facebookredirecturls</label>
 				<config>
 					<type>check</type>
 				</config>

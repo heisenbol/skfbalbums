@@ -31,15 +31,15 @@ Questions? Contact sk(at)karasavvidis.gr
 
 
 # TODO
-- translations
+- upload to translation server
 - remove more deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
-- some loging for sync process and outbput in manual sync
+- some loging for sync process and output in manual sync
 - in single album view, make sure only albums on pages with access from the user are shown
 - better documentation describing all options and sync process
 - monitor https://forge.typo3.org/issues/81021 which prevents having 2 plugins on same page
 
-# Change templates
+# Changing templates
 You can override the template paths to adapt the look and feel of the display. 
 
 Here is a quick howto:
