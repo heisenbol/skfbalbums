@@ -35,7 +35,6 @@ Questions? Contact sk(at)karasavvidis.gr
 - remove more deprecated methods for TYPO3 8 
 - a howto to create facebook app and get the app id and secret
 - some loging for sync process and output in manual sync
-- in single album view, make sure only albums on pages with access from the user are shown
 - better documentation describing all options and sync process
 - monitor https://forge.typo3.org/issues/81021 which prevents having 2 plugins on same page
 
@@ -104,6 +103,7 @@ GitHub Repo at https://github.com/sksksksk/skfbalbums
 0.0.7-dev
 - clean up translation files
 - add icons for BE module and plugin
+- when showing a single album, only the albums from the set record storage page are available to choose
 
 
 0.0.6

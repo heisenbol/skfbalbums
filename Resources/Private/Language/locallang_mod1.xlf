@@ -10,7 +10,7 @@
 				<source>Allows to sync albums and photos of specific Facebook Page Tokens. Extension skfbalbums</source>
 			</trans-unit>
 			<trans-unit id="heading">
-				<source>Facebook Tokens for Pages on this page</source>
+				<source>Facebook Tokens for Albums on this page</source>
 			</trans-unit>
 			<trans-unit id="instructions">
 				<source>Click on the sync link for each token to syncrhonize Albums and Photos</source>

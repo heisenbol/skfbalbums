@@ -22,36 +22,50 @@ class ItemsProcFunc
         $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
         $albumRepository = $objectManager->get('Skar\Skfbalbums\Domain\Repository\AlbumRepository');
 
-        // I need to get the list of albums to display to the user
-        // For this, I would need the storage folder selected in the plugin
-        // I can get it through $config['flexParentDatabaseRow']['pages'], which is in a strange form like
-        // pages_7|single,pages_3|tuc%20isotope,pages_2|aaa 
-        // where adter the underscore is the page id(s)
-        // I could then use the following to retrieve the albums.
-        // But I do not like this. So just display all the available albums to the user
-        // Moreover, it seems that flexParentDatabaseRow conflicts with compatibility6 which has these values in $config['row'] instead
-
-/*
-        $configurationManager = $objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManager');
-        $frameworkConfiguration = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $persistenceConfiguration = array('persistence' => array('storagePid' => '7,5'));
-        $configurationManager->setConfiguration(array_merge($frameworkConfiguration, $persistenceConfiguration));
-        $albums = $albumRepository->findAll();
-*/
-
-        // TODO - make sure that the below does not fetch albums from pages the user does not have access
-        $albums = $albumRepository->findAllInAllPages();
-        if (!$albums) {
-            $optionList[] = array(0 => '--No albums found anywhere in the tree--', 1 => '0');
+        $pluginUid = 0;
+        $recordStoragePagesComma = null;
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('compatibility6')) {
+            $pluginUid = intval($config['row']['uid']);
+        } else {
+            $pluginUid = intval($config['flexParentDatabaseRow']['uid']);
         }
-        else {
-            foreach($albums as $album) {
-                $optionList[] = array(
-                                    0 => htmlspecialchars($album->getEffectiveName().' (Uid:'.$album->getUid().', Page Id='.$album->getPid().')', ENT_QUOTES), 
-                                    1 => $album->getUid()
-                                    );
+        if ($pluginUid) {
+            // retrieve the set record storage page of plugin
+            $pluginTtContentRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tt_content', $pluginUid, 'pages');
+            if ($pluginTtContentRecord && is_array($pluginTtContentRecord) && count($pluginTtContentRecord) > 0) {
+                $recordStoragePagesComma = $pluginTtContentRecord['pages'];
             }
         }
+
+
+        if (!$recordStoragePagesComma) {
+
+            $text = htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.record_storage_page_not_set'));
+            //$optionList[] = array(0 => '--Please set the Record Storage Page and save--', 1 => '0');
+            $optionList[] = array(0 => "--$text--", 1 => '0');
+        }
+        else {
+            $configurationManager = $objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManager');
+            $frameworkConfiguration = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+            $persistenceConfiguration = array('persistence' => array('storagePid' => $recordStoragePagesComma));
+            $configurationManager->setConfiguration(array_merge($frameworkConfiguration, $persistenceConfiguration));
+            $albums = $albumRepository->findAll();
+
+            // $albums = $albumRepository->findAllInAllPages();
+            if (count($albums) == 0) {
+                $text = htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.no_albums_found'));
+                $optionList[] = array(0 => "--$text--", 1 => '0');
+            }
+            else {
+                foreach($albums as $album) {
+                    $optionList[] = array(
+                        0 => htmlspecialchars($album->getEffectiveName().' (Uid:'.$album->getUid().', Page Id='.$album->getPid().')', ENT_QUOTES), 
+                        1 => $album->getUid()
+                    );
+                }
+            }
+        }
+
 
 //        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($albums); 
 //        $config['items'] = array_merge($config['items'],$optionList);
