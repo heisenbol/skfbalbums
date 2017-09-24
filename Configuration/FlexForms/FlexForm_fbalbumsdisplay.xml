@@ -7,9 +7,7 @@
  <ROOT>
  	<type>array</type>
 	 <el>
-	 	<!-- 
-	 		http://blog.teamgeist-medien.de/2014/02/typo3-extbase-standard-action-per-flexform-festlegen-switchablecontrolleractions.html
-	 	-->
+
         <switchableControllerActions>
             <TCEforms>
                 <label>What to display</label>

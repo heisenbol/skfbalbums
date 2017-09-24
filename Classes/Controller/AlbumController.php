@@ -18,7 +18,6 @@ namespace Skar\Skfbalbums\Controller;
 class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
-    // http://coding.musikinsnetz.de/typo3-extbase-fluid/general/automatic-page-cache-clearance-on-extension-record-update
     /**
      * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
      */
@@ -56,7 +55,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $photoRepository = null;
 
 
-    // http://coding.musikinsnetz.de/typo3-extbase-fluid/general/automatic-page-cache-clearance-on-extension-record-update
     public function addCacheTags($cacheTag) {
         // do this only in frontend
         if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
