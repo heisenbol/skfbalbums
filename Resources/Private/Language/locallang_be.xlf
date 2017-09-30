@@ -16,6 +16,24 @@
 			<trans-unit id="scheduler_pageidstoinclude">
 				<source>TYPO3 Page Ids to include. Comma separated. Leave blank for all.</source>
 			</trans-unit>
+
+			<trans-unit id="flexforms.sheet_general">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="flexforms.sheet_albumlistoptions">
+				<source>Album List Options</source>
+			</trans-unit>
+			<trans-unit id="flexforms.sheet_singlealbumoptions">
+				<source>Single Album Options</source>
+			</trans-unit>
+			<trans-unit id="flexforms.sheet_unitegalleryoptions">
+				<source>Unite Gallery Options</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.what">
+				<source>What to display</source>
+			</trans-unit>
+
 			<trans-unit id="flexforms.album_list">
 				<source>Display Album List</source>
 			</trans-unit>
@@ -48,6 +66,9 @@
 
 			<trans-unit id="flexforms.album_single.unitesettings">
 				<source>Unite Gallery Theme</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.autoplay">
+				<source>Autoplay</source>
 			</trans-unit>
 			<trans-unit id="flexforms.album_single.unitesettingsadditional">
 				<source>Unite Gallery additional params. One per line of the form name:value without quotes</source>

@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'FB Albums',
-    'description' => ' Syncs Facebook Page Albums and Photos and displays them on your pages. No actual image files are downloaded. It uses image urls as given by facebook.',
+    'description' => ' Show Facebook Page Albums and Photos on your site. No actual image files are downloaded. It uses image urls as given by facebook.',
     'category' => 'plugin',
     'author' => 'Stefanos Karasavvidis',
     'author_email' => 'sk@karasavvidis.gr',
