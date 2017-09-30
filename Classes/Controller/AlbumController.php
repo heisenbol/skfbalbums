@@ -234,16 +234,58 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->settings['uniteparams'] = "";
             }
             
+            if (array_key_exists('uniteparam', $this->settings) && is_array($this->settings['uniteparam'])) {
+                foreach ($this->settings['uniteparam'] as $uniteParam => $uniteValue) {
+                    if (trim($uniteValue)) {
+                        if ($uniteParam == 'autoplay') {
+                            if ($uniteValue) {
+                                $uniteValue = true;
+                            }
+                            else {
+                                $uniteValue = false;
+                            }
+                            $autoPlayProperty = 'gallery_autoplay';
+                            if ($uniteTheme == 'carousel') {
+                                $autoPlayProperty = 'carousel_autoplay';
+                            }
+
+                            $uniteOptions[$autoPlayProperty] = $uniteValue;
+                        }
+                        else if ($uniteParam == 'autoplayinterval') {
+                            $autoPlayProperty = 'gallery_play_interval';
+                            if ($uniteTheme == 'carousel') {
+                                $autoPlayProperty = 'carousel_autoplay_timeout';
+                            }
+
+                            $uniteOptions[$autoPlayProperty] = intval($uniteValue);
+                        }
+                        else {
+                            if (strpos($uniteValue,'%') === FALSE) {
+                                $uniteOptions[$uniteParam] = intval(trim($uniteValue));
+                            }
+                            else {
+                                $uniteOptions[$uniteParam] = trim($uniteValue);
+                            }
+                        }
+                    }
+                }
+            }
+
             if (trim($this->settings['uniteparams'])) {
                 $additionalParams = preg_split("/\r\n|\n|\r/", $this->settings['uniteparams']);
                 foreach($additionalParams as $additionalParam) {
                     $parts = explode(':', $additionalParam);
                     if (count($parts) == 2) {
-                        $uniteOptions[trim($parts[0])] = trim($parts[1]);
+                        if (strpos($uniteValue,'%') === FALSE) {
+                            $uniteOptions[trim($parts[0])] = intval(trim($parts[1]));
+                        }
+                        else {
+                            $uniteOptions[trim($parts[0])] = trim($parts[1]);
+                        }
                     }
                 }
             }
-
+            //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->settings['uniteparam']); 
         }
     
 //        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( json_encode($uniteOptions, JSON_FORCE_OBJECT)); 

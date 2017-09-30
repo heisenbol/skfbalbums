@@ -239,6 +239,118 @@
 						</TCEforms>
 					</settings.uniteparam.autoplay>
 
+					<settings.uniteparam.autoplayinterval>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.autoplayinterval</label>
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.unitetheme:=:carousel]]></numIndex>
+							        <numIndex index="1"><![CDATA[FIELD:settings.unitetheme:=:default]]></numIndex>
+							        <numIndex index="2"><![CDATA[FIELD:settings.unitetheme:=:compact]]></numIndex>
+							        <numIndex index="3"><![CDATA[FIELD:settings.unitetheme:=:gridtheme]]></numIndex>
+							        <numIndex index="4"><![CDATA[FIELD:settings.unitetheme:=:slider]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default>3000</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.autoplayinterval>
+
+					<settings.uniteparam.gallery_width>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.gallery_width</label>
+							<config>
+								<type>input</type>
+								<default>900</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.gallery_width>
+
+					<settings.uniteparam.gallery_height>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.gallery_height</label>
+
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.unitetheme:=:slider]]></numIndex>
+							        <numIndex index="1"><![CDATA[FIELD:settings.unitetheme:=:default]]></numIndex>
+							        <numIndex index="2"><![CDATA[FIELD:settings.unitetheme:=:compact]]></numIndex>
+							        <numIndex index="3"><![CDATA[FIELD:settings.unitetheme:=:gridtheme]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default>500</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.gallery_height>
+
+					<settings.uniteparam.gallery_min_width>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.gallery_min_width</label>
+							<config>
+								<type>input</type>
+								<default>200</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.gallery_min_width>
+
+					<settings.uniteparam.gallery_min_height>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.gallery_min_height</label>
+
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.unitetheme:=:slider]]></numIndex>
+							        <numIndex index="1"><![CDATA[FIELD:settings.unitetheme:=:default]]></numIndex>
+							        <numIndex index="2"><![CDATA[FIELD:settings.unitetheme:=:compact]]></numIndex>
+							        <numIndex index="3"><![CDATA[FIELD:settings.unitetheme:=:gridtheme]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default>300</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.gallery_min_height>
+
+
+					<settings.uniteparam.tile_width>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.tile_width</label>
+
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.unitetheme:=:carousel]]></numIndex>
+							        <numIndex index="1"><![CDATA[FIELD:settings.unitetheme:=:tilesgrid]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default>160</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.tile_width>
+					<settings.uniteparam.tile_height>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.uniteparam.tile_height</label>
+
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.unitetheme:=:carousel]]></numIndex>
+							        <numIndex index="1"><![CDATA[FIELD:settings.unitetheme:=:tilesgrid]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default>160</default>
+							</config>
+						</TCEforms>
+					</settings.uniteparam.tile_height>
+
+
 					<settings.uniteparams>
 						<TCEforms>
 							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.unitesettingsadditional</label>

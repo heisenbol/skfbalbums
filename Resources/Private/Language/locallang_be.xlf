@@ -70,6 +70,29 @@
 			<trans-unit id="flexforms.album_single.uniteparam.autoplay">
 				<source>Autoplay</source>
 			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.autoplayinterval">
+				<source>Play interval of the slideshow</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.gallery_width">
+				<source>Gallery Width (e.g. 900 or 100%)</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.gallery_height">
+				<source>Gallery height (e.g. 500)</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.gallery_min_width">
+				<source>Gallery minimal width when resizing</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.gallery_min_height">
+				<source>Gallery minimal height when resizing</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.tile_width">
+				<source>Tile width</source>
+			</trans-unit>
+			<trans-unit id="flexforms.album_single.uniteparam.tile_height">
+				<source>Tile height</source>
+			</trans-unit>
+
+
 			<trans-unit id="flexforms.album_single.unitesettingsadditional">
 				<source>Unite Gallery additional params. One per line of the form name:value without quotes</source>
 			</trans-unit>
