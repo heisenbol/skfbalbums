@@ -53,6 +53,10 @@ call_user_func(
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'FB Albums');
 
+        // csh for flexform...
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+            'tt_content.pi_flexform.skfbalbums_fbalbumsdisplay.list', 'EXT:skfbalbums/Resources/Private/Language/locallang_csh_flexforms.xlf');
+
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_skfbalbums_domain_model_album', 'EXT:skfbalbums/Resources/Private/Language/locallang_csh_tx_skfbalbums_domain_model_album.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_skfbalbums_domain_model_album');
 

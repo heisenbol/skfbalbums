@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T09:18:29Z" product-name="skfbalbums">
+		<header/>
+		<body>
+
+
+			<trans-unit id="switchableControllerActions.alttile">
+				<source>What to displayxxxxx</source>
+			</trans-unit>
+			<trans-unit id="switchableControllerActions.title">
+				<source>What to display111111</source>
+			</trans-unit>
+			<trans-unit id="switchableControllerActions.description">
+				<source>What to display22222</source>
+			</trans-unit>
+			<trans-unit id="switchableControllerActions.details">
+				<source>What to display33333</source>
+			</trans-unit>
+
+
+			<trans-unit id="settings.albumForSingle.alttile">
+				<source>What to displayxxxxx</source>
+			</trans-unit>
+			<trans-unit id="settings.albumForSingle.title">
+				<source>What to display111111</source>
+			</trans-unit>
+			<trans-unit id="settings.albumForSingle.description">
+				<source>What to display22222</source>
+			</trans-unit>
+			<trans-unit id="settings.albumForSingle.details">
+				<source>What to display33333</source>
+			</trans-unit>
+
+			<trans-unit id="settings.photolayout.alttile">
+				<source>What to displayxxxxx22</source>
+			</trans-unit>
+			<trans-unit id="settings.photolayout.title">
+				<source>What to display11111122</source>
+			</trans-unit>
+			<trans-unit id="settings.photolayout.description">
+				<source>What to display2222222</source>
+			</trans-unit>
+			<trans-unit id="settings.photolayout.details">
+				<source>What to display3333322</source>
+			</trans-unit>
+
+
+		</body>
+	</file>
+</xliff>

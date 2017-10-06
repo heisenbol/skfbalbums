@@ -94,10 +94,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
         
         if (!$this->settings || !array_key_exists('albumlayout',$this->settings) || !$this->settings['albumlayout']) {
-            $this->settings['albumlayout'] = "Default";
+            $this->settings['albumlayout'] = "Plain";
         }
 
-        if ($this->settings['albumlayout'] == 'Default' || $this->settings['albumlayout'] == 'CssMasonry') {
+        if ($this->settings['albumlayout'] == 'Plain' || $this->settings['albumlayout'] == 'CssMasonry') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
@@ -125,11 +125,11 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
         if (!$this->settings || !array_key_exists('photolayout',$this->settings) || !$this->settings['photolayout']) {
-            $this->settings['photolayout'] = "Default";
+            $this->settings['photolayout'] = "Plain";
         }
 
 
-        if ($this->settings['photolayout'] == 'Default' || $this->settings['photolayout'] == 'CssMasonry') {
+        if ($this->settings['photolayout'] == 'Plain' || $this->settings['photolayout'] == 'CssMasonry') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');

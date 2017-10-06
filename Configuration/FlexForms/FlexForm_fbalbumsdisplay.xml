@@ -103,7 +103,7 @@
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutdefault</numIndex>
-										<numIndex index="1">Default</numIndex>
+										<numIndex index="1">Plain</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutcssmasonry</numIndex>
@@ -139,7 +139,7 @@
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutdefault</numIndex>
-										<numIndex index="1">Default</numIndex>
+										<numIndex index="1">Plain</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutcssmasonry</numIndex>
