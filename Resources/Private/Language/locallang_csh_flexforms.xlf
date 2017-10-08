@@ -25,7 +25,7 @@
 					&lt;p&gt;Facebook is using a global CDN (Content Delivery Network). This means that a user in Europe will retrieve an image using a different address than a use in Australia. Each user is presented with an address that is nearer, to his/her location. and thus faster to access.&lt;/p&gt;
 					&lt;p&gt;When the checkbox is unchecked, the plugin uses as image web addresses a direct link to the image file, as it would be used when you reside at your server's location. 
 					The advantage is that in this way you can get large versions for your images. 
-					The disadvantage is that your users may be located in a totally different location of the world than your server, and thus would access the image less efficiently. &lt;/p&gt;
+					The disadvantage is that your users may be located in a totally different location of the world than your server, and thus would access the image less efficiently. Moreover, the addresses Facebook uses tend to change and if you do not synchronize frequently, the image files may not be found.&lt;/p&gt;
 					&lt;p&gt;When the checkbox is checked, the images are served using a facebook redirect url. Facebook redirects to the the address that is nearer to your users location. 
 					The disadvantage is that these urls do not support large versions of the images. The quality of the images will be low. This may not be a problem for you if you do not need large images.&lt;/p&gt;
 				</source>
