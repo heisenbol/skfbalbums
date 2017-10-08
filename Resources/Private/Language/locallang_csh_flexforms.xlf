@@ -34,19 +34,19 @@
 			<trans-unit id="settings.albumlayout.description" xml:space="preserve">
 				<source>How the list of albums should be displayed
 					&lt;ul&gt;
-					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; .&lt;/li&gt;
-					&lt;li&gt;&lt;strong&gt;Css Masonry:&lt;/strong&gt; .&lt;/li&gt;
-					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; Plain list of album cover photos with title and descriptions. Clicking on the leads to the photos list of the album.&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Css Masonry:&lt;/strong&gt; A little bit more fancy display of the list of albums.&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; A raw output of the album list. Should not be used in production.&lt;/li&gt;
 					&lt;/ul&gt;
 				</source>
 			</trans-unit>
 			<trans-unit id="settings.photolayout.description" xml:space="preserve">
 				<source>How the list of albums should be displayed
 					&lt;ul&gt;
-					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; .&lt;/li&gt;
-					&lt;li&gt;&lt;strong&gt;Css Masonry with lightbox:&lt;/strong&gt; .&lt;/li&gt;
-					&lt;li&gt;&lt;strong&gt;Unite Gallery:&lt;/strong&gt; .&lt;/li&gt;
-					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; Plain list of photos with description. Clicking on an image opens the photo in a new window.&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Css Masonry with lightbox:&lt;/strong&gt; More fancy display of the photo list with an integrated lightbox to view larger images.&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Unite Gallery:&lt;/strong&gt; Uses the great Unite Gallery to show the images. You can choose the theme to use. &lt;strong&gt;You must include JQuery in your page for this to work!&lt;/strong&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; A raw output of the photo list. Should not be used in production.&lt;/li&gt;
 					&lt;/ul&gt;
 				</source>
 			</trans-unit>
