@@ -78,12 +78,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
-//        $token = $this->tokenRepository->findByUid(4);
-//         $data = $token->sync();
-//         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($data); 
-
         $albums = $this->albumRepository->findAll();
+        $noAlbums = true;
         foreach($albums as $album) {
+            $noAlbums = false;
             if ($album->getCoverPhotoFbId()) {
                 $album->coverPhoto = $this->photoRepository->findByFbId($album->getCoverPhotoFbId());
             }
@@ -102,8 +100,13 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
                 . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
         }
+        if ($noAlbums) {
+            $this->addFlashMessage('No albums available', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        }
 
         $this->addCacheTags('tx_skfbalbums_domain_model_album'); // the database table name of your domain model
+
+
 
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
         $this->view->assign('albumlayout', $this->settings['albumlayout']);

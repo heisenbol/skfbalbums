@@ -5,47 +5,81 @@
 		<body>
 
 
-			<trans-unit id="switchableControllerActions.alttile">
-				<source>What to displayxxxxx</source>
-			</trans-unit>
-			<trans-unit id="switchableControllerActions.title">
-				<source>What to display111111</source>
-			</trans-unit>
-			<trans-unit id="switchableControllerActions.description">
-				<source>What to display22222</source>
-			</trans-unit>
-			<trans-unit id="switchableControllerActions.details">
-				<source>What to display33333</source>
+
+			<trans-unit id="switchableControllerActions.description" xml:space="preserve">
+				<source>
+					Set the view you want to display
+					&lt;ul&gt;
+					&lt;li&gt;&lt;strong&gt;Album list&lt;/strong&gt; displays a list of albums. Clicking on an album leads to the display of the photos of this album, the single album photos. &lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Single album photos&lt;/strong&gt; displays the photos within a single album. You will have to choose which album to use.&lt;/li&gt;
+					&lt;/ul&gt;
+				</source>
 			</trans-unit>
 
-
-			<trans-unit id="settings.albumForSingle.alttile">
-				<source>What to displayxxxxx</source>
-			</trans-unit>
-			<trans-unit id="settings.albumForSingle.title">
-				<source>What to display111111</source>
-			</trans-unit>
-			<trans-unit id="settings.albumForSingle.description">
-				<source>What to display22222</source>
-			</trans-unit>
-			<trans-unit id="settings.albumForSingle.details">
-				<source>What to display33333</source>
+			<trans-unit id="settings.albumForSingle.description" xml:space="preserve">
+				<source>Choose the album to use for displaying it's photos. You will have to have set the Record Storage Page where the album is stored and saved first</source>
 			</trans-unit>
 
-			<trans-unit id="settings.photolayout.alttile">
-				<source>What to displayxxxxx22</source>
-			</trans-unit>
-			<trans-unit id="settings.photolayout.title">
-				<source>What to display11111122</source>
-			</trans-unit>
-			<trans-unit id="settings.photolayout.description">
-				<source>What to display2222222</source>
-			</trans-unit>
-			<trans-unit id="settings.photolayout.details">
-				<source>What to display3333322</source>
+			<trans-unit id="settings.useFbRedirectUrls.description" xml:space="preserve">
+				<source>Whether to use facebook redirect urls for the photos or not.
+					&lt;p&gt;Facebook is using a global CDN (Content Delivery Network). This means that a user in Europe will retrieve an image using a different address than a use in Australia. Each user is presented with an address that is nearer, to his/her location. and thus faster to access.&lt;/p&gt;
+					&lt;p&gt;When the checkbox is unchecked, the plugin uses as image web addresses a direct link to the image file, as it would be used when you reside at your server's location. 
+					The advantage is that in this way you can get large versions for your images. 
+					The disadvantage is that your users may be located in a totally different location of the world than your server, and thus would access the image less efficiently. &lt;/p&gt;
+					&lt;p&gt;When the checkbox is checked, the images are served using a facebook redirect url. Facebook redirects to the the address that is nearer to your users location. 
+					The disadvantage is that these urls do not support large versions of the images. The quality of the images will be low. This may not be a problem for you if you do not need large images.&lt;/p&gt;
+				</source>
 			</trans-unit>
 
-
+			<trans-unit id="settings.albumlayout.description" xml:space="preserve">
+				<source>How the list of albums should be displayed
+					&lt;ul&gt;
+					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Css Masonry:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;/ul&gt;
+				</source>
+			</trans-unit>
+			<trans-unit id="settings.photolayout.description" xml:space="preserve">
+				<source>How the list of albums should be displayed
+					&lt;ul&gt;
+					&lt;li&gt;&lt;strong&gt;Plain:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Css Masonry with lightbox:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Unite Gallery:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;li&gt;&lt;strong&gt;Raw:&lt;/strong&gt; .&lt;/li&gt;
+					&lt;/ul&gt;
+				</source>
+			</trans-unit>
+			<trans-unit id="settings.unitetheme.description" xml:space="preserve">
+				<source>The theme of the Unite Gallery. Demos about the theme are available at http://unitegallery.net/</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.autoplay.description" xml:space="preserve">
+				<source>Should the gallery automatically start to play?</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.autoplayinterval.description" xml:space="preserve">
+				<source>The pause between transitions if autoplay is enabled. In milliseconds</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.gallery_width.description" xml:space="preserve">
+				<source>The gallery width. Number in pixels (e.g. 900) or percentage (e.g. 90%). Depends on the theme</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.gallery_height.description" xml:space="preserve">
+				<source>The gallery height.</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.gallery_min_width.description" xml:space="preserve">
+				<source>The minimum width of the gallery</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.gallery_min_height.description" xml:space="preserve">
+				<source>The minimum height of the gallery</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.tile_width.description" xml:space="preserve">
+				<source>Tile width</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparam.tile_height.description" xml:space="preserve">
+				<source>Tile height</source>
+			</trans-unit>
+			<trans-unit id="settings.uniteparams.description" xml:space="preserve">
+				<source>Additional parameters for the gallery. All parameters per theme are available at http://unitegallery.net/. Example &lt;br&gt;&lt;pre&gt;carousel_space_between_tiles: 20&lt;br&gt;carousel_scroll_duration:500&lt;pre&gt;</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
