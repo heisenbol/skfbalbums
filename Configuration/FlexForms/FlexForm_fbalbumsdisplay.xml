@@ -97,12 +97,12 @@
                 <el>
 					<settings.albumlayout>
 						<TCEforms>
-							<label>Album List Layout</label>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.albumlistlayout</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutdefault</numIndex>
+										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutplain</numIndex>
 										<numIndex index="1">Plain</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -132,13 +132,13 @@
                 <el>
 					<settings.photolayout>
 						<TCEforms>
-							<label>Single Album Layout</label>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.singlealbumlayout</label>
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutdefault</numIndex>
+										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutplain</numIndex>
 										<numIndex index="1">Plain</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -146,7 +146,7 @@
 										<numIndex index="1">CssMasonry</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutunite</numIndex>
+										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutunitegallery</numIndex>
 										<numIndex index="1">Unitegallery</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">

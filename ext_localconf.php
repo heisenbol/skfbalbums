@@ -16,19 +16,7 @@ call_user_func(
                 'Album' => ''
             ]
         );
-/*
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Skar.Skfbalbums',
-            'Fbalbumsdisplaysingle',
-            [
-                'Album' => 'show'
-            ],
-            [
-                'Album' => ''
-            ]
 
-            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey)
-        );*/
 
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
 			'mod {
@@ -48,6 +36,15 @@ call_user_func(
 				}
 		   }'
 		);
+
+
+        if (TYPO3_MODE === 'BE') {
+            // Page module hook - show flexform settings in page module
+            $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey);
+            $pluginSignature = strtolower($extensionName) . '_fbalbumsdisplay'; 
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$pluginSignature][$_EXTKEY] =
+                \Skar\Skfbalbums\Helper\FlexformPreview::class . '->getExtensionSummary';
+        }
     },
     $_EXTKEY
 );

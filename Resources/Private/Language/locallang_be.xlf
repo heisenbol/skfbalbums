@@ -17,6 +17,32 @@
 				<source>TYPO3 Page Ids to include. Comma separated. Leave blank for all.</source>
 			</trans-unit>
 
+			<trans-unit id="preview.label.singlealbum">
+				<source>Album</source>
+			</trans-unit>
+			<trans-unit id="preview.label.albumlistlayout">
+				<source>Album list layout</source>
+			</trans-unit>
+			<trans-unit id="preview.label.singlealbumlayout">
+				<source>Single album layout</source>
+			</trans-unit>
+			<trans-unit id="preview.label.unitetheme">
+				<source>Unite Gallery theme</source>
+			</trans-unit>
+			<trans-unit id="preview.label.stored">
+				<source>Stored</source>
+			</trans-unit>
+			<trans-unit id="preview.label.storednoneselected">
+				<source>Non selected</source>
+			</trans-unit>
+			<trans-unit id="preview.label.albumnoneselected">
+				<source>Non selected</source>
+			</trans-unit>
+			<trans-unit id="preview.label.unitethemenotset">
+				<source>Not set</source>
+			</trans-unit>
+
+
 			<trans-unit id="flexforms.sheet_general">
 				<source>General</source>
 			</trans-unit>
@@ -41,7 +67,14 @@
 				<source>Display Single Album Photos</source>
 			</trans-unit>
 
-			<trans-unit id="flexforms.album_list.layoutdefault">
+			<trans-unit id="flexforms.albumlistlayout">
+				<source>Album list layout</source>
+			</trans-unit>
+			<trans-unit id="flexforms.singlealbumlayout">
+				<source>Single album layout</source>
+			</trans-unit>
+
+			<trans-unit id="flexforms.album_list.layoutplain">
 				<source>Plain</source>
 			</trans-unit>
 			<trans-unit id="flexforms.album_list.layoutcssmasonry">
@@ -51,13 +84,13 @@
 				<source>Raw output</source>
 			</trans-unit>
 
-			<trans-unit id="flexforms.album_single.layoutdefault">
+			<trans-unit id="flexforms.album_single.layoutplain">
 				<source>Plain</source>
 			</trans-unit>
 			<trans-unit id="flexforms.album_single.layoutcssmasonry">
 				<source>Css Masonry with Lightbox</source>
 			</trans-unit>
-			<trans-unit id="flexforms.album_single.layoutunite">
+			<trans-unit id="flexforms.album_single.layoutunitegallery">
 				<source>Unite Gallery (needs jquery in your page)</source>
 			</trans-unit>
 			<trans-unit id="flexforms.album_single.layoutraw">
