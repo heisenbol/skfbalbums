@@ -59,8 +59,15 @@ class TokenController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $syncResult = $token->sync();
         $this->view->assign('token', $token);
-        $this->view->assign('albumsUpdated', $syncResult['albumsUpdated']);
-        $this->view->assign('albumsImported', $syncResult['albumsImported']);
-        $this->view->assign('albumsHidden', $syncResult['albumsHidden']);
+        $error = FALSE;
+        if ($syncResult === FALSE) {
+            $error = TRUE;
+        }
+        else {
+            $this->view->assign('syncError', $error);
+            $this->view->assign('albumsUpdated', $syncResult['albumsUpdated']);
+            $this->view->assign('albumsImported', $syncResult['albumsImported']);
+            $this->view->assign('albumsHidden', $syncResult['albumsHidden']);
+        }
     }
 }

@@ -273,10 +273,20 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $appSecret = $this->getAppSecret();
         $graphActLink = "https://graph.facebook.com/oauth/access_token?client_id={$appId}&client_secret={$appSecret}&grant_type=client_credentials";
         $accessTokenJson = file_get_contents($graphActLink);
+        if ($accessTokenJson === FALSE) {
+            return FALSE;
+        }
+
         // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("access token:".$accessTokenJson); 
 
         $accessTokenObj = json_decode($accessTokenJson);
+        if ($accessTokenObj === NULL) {
+            return FALSE;
+        }
         $accessToken = $accessTokenObj->access_token;
+        if (!$accessToken) {
+            return FALSE;
+        }
 
         return $accessToken;
     }
@@ -341,6 +351,10 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         // todo - do not sync if it was synced recently. Have a parameter to force it
 
         $accessToken = $this->retrieveAccessToken();
+        if ($accessToken === FALSE) {
+            return FALSE;
+        }
+
 
         $albums = $this->retrievePageAlbums($accessToken);
         if ($albums === FALSE) {

@@ -28,6 +28,9 @@
 			<trans-unit id="syncresultheading">
 				<source>Synchronization result for Facebook Token</source>
 			</trans-unit>
+			<trans-unit id="syncerror">
+				<source>There was an error in the synchronization process. TYPO3's BE log should have more information</source>
+			</trans-unit>
 			<trans-unit id="syncresultimported">
 				<source>Albums Imported</source>
 			</trans-unit>
