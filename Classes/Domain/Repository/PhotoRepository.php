@@ -21,9 +21,10 @@ class PhotoRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @param \Skar\Skfbalbums\Domain\Model\Album $album
      * @param boolean $includeHidden
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @param boolean $onlyCount = false
+     * @return array|int|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function getPhotosByAlbum(\Skar\Skfbalbums\Domain\Model\Album $album, $includeHidden) {
+    public function getPhotosByAlbum(\Skar\Skfbalbums\Domain\Model\Album $album, $includeHidden, $onlyCount = false) {
     	
         $query = $this->createQuery();
     		//$query->getQuerySettings()->setRespectStoragePage(false);
@@ -34,8 +35,13 @@ class PhotoRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         $constraint[] = $query->equals('album', $album);
 
- 
-        $result = $query->matching($query->logicalAnd($constraint))->execute();
+        if ($onlyCount) {
+            $result = $query->matching($query->logicalAnd($constraint))->count();
+        }
+        else {
+            $result = $query->matching($query->logicalAnd($constraint))->execute();
+        }
+        
   		return $result;
     }
 
