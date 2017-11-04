@@ -267,6 +267,22 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->getAlbumCount(\Skar\Skfbalbums\Domain\Repository\AlbumRepository::ONLY_NONHIDDEN);
     }
 
+    private function logError($message) {
+        global $BE_USER;
+        $BE_USER->simplelog($message, $extKey='skfbalbums', 2);
+        /*
+        $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+        $logger->info('Everything went fine.'. "  includeFolders is $includeFolders");
+        $logger->warning('Something went awry, check your configuration!');
+        $logger->error(
+          'This was not a good idea',
+          array(
+            'foo' => 1,
+            'bar' => 2,
+          )
+        );
+        */
+    }
 
     private function retrieveAccessToken() {
         $appId = $this->getAppId();
@@ -274,6 +290,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $graphActLink = "https://graph.facebook.com/oauth/access_token?client_id={$appId}&client_secret={$appSecret}&grant_type=client_credentials";
         $accessTokenJson = file_get_contents($graphActLink);
         if ($accessTokenJson === FALSE) {
+            $this->logError("Error getting client credentials from Facebook. The app id or app secret might be wrong, or there may be other kind of restrictions like an IP restriction Token id: ".$this->getUid());
             return FALSE;
         }
 
@@ -281,10 +298,12 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
         $accessTokenObj = json_decode($accessTokenJson);
         if ($accessTokenObj === NULL) {
+            $this->logError("Error decoding json response after call for getting client credentials from Facebook. Token id: ".$this->getUid());
             return FALSE;
         }
         $accessToken = $accessTokenObj->access_token;
         if (!$accessToken) {
+            $this->logError("Error getting access token from client credential response. Token id: ".$this->getUid());
             return FALSE;
         }
 
