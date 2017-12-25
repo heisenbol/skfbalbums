@@ -15,7 +15,7 @@ class ItemsProcFunc
      *
      * @param array &$config configuration array
      */
-    public function user_singleAlbum(array &$config)
+    public function user_singleAlbum_OBSOLETE(array &$config)
     {
         $optionList = array();
 
