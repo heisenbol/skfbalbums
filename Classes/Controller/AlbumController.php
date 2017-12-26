@@ -108,10 +108,16 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
         }
         if ($noAlbums) {
-            $this->addFlashMessage('No albums available', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+
+            
+            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_noalbumsavailableerror','skfbalbums'), 
+                '', 
+                \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING
+                );
         }
 
-        $this->addCacheTags('tx_skfbalbums_domain_model_album'); // the database table name of your domain model
+        // the database table name of your domain model
+        $this->addCacheTags('tx_skfbalbums_domain_model_album'); 
 
 
 
@@ -130,6 +136,16 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album, $showBacklink = true)
     {
+        if (!$album->getUid()) {
+            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_nosinglealbumerror','skfbalbums'), 
+                '', 
+                \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING
+                );
+            $this->view->assign('photolayout', 'Plain');
+            $this->view->assign('album', $album);
+
+            return;
+        }
         
         $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
@@ -295,10 +311,8 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     }
                 }
             }
-            //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->settings['uniteparam']); 
         }
     
-//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( json_encode($uniteOptions, JSON_FORCE_OBJECT)); 
 
 
         $this->addCacheTags('tx_skfbalbums_domain_model_album_'.$album->getUid()); // the database table name of your domain model plus the UID of your record
@@ -306,11 +320,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('photolayout', $this->settings['photolayout']);
         $this->view->assign('album', $album);
         $this->view->assign('uniteOptions', json_encode($uniteOptions, JSON_FORCE_OBJECT));
-        $this->view->assign('skata', 'skata1');
         $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
-//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump( $this->settings); 
     }
 
     /**
@@ -344,8 +356,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             return;
         }
         else {
-            echo 'No album selected. TODO better handling';
-            exit();
+
+            $album = new \Skar\Skfbalbums\Domain\Model\Album;
+            $this->request->setArgument('album',$album);
+            return;
         }
         
     }

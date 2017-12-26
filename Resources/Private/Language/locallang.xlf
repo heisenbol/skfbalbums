@@ -6,6 +6,13 @@
 			<trans-unit id="tx_skfbalbums_albumlistlinktext">
 				<source>Album list</source>
 			</trans-unit>
+			<trans-unit id="tx_skfbalbums_noalbumsavailableerror">
+				<source>No albums available or Record Storage Page in plugin settings not set</source>
+			</trans-unit>
+			<trans-unit id="tx_skfbalbums_nosinglealbumerror">
+				<source>No album for single view is set</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
