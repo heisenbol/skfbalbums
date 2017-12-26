@@ -1,15 +1,23 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 {namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
-	<h1>{album.effectiveName}</h1>
-	<p>{album.effectiveDescription}</p>
 
- 
+	<f:if condition="{photolistHideAlbumTitle}==0">
+		<f:then>
+			<h1>{album.effectiveName}</h1>
+		</f:then>
+	</f:if>
+	<f:if condition="{photolistHideAlbumDescription}==0">
+		<f:then>
+			<p>{album.effectiveDescription}</p>
+		</f:then>
+	</f:if>
+
 	<div id="unitegallery{cobjUid}" style="display:none;" class="skfbalbumsunitegallery">
 		
 		<f:for each="{album.photos}" as="photo">
-			<img alt="{photo.effectiveCaption}" src="{fbalbum:fbImage(photo: photo, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}"
+			<img alt="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}" src="{fbalbum:fbImage(photo: photo, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}"
 				data-image="{fbalbum:fbImage(photo: photo, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}"
-				data-description="{photo.effectiveCaption}">
+				data-description="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}">
 		</f:for>
 			
 	</div>
@@ -26,3 +34,5 @@
 
 	</script>
 </html>
+
+

@@ -144,6 +144,27 @@
 							</config>
 						</TCEforms>
 					</settings.albumlayout>
+
+
+
+					<settings.albumlistHideTitle>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.albumlist_hidetitle</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.albumlistHideTitle>
+
+					<settings.albumlistHideDescription>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.albumlist_hidedescription</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.albumlistHideDescription>
+
                 </el>
             </ROOT>
         </sheet1>
@@ -184,6 +205,42 @@
 							</config>
 						</TCEforms>
 					</settings.photolayout>
+
+					<settings.photolistHideCaption>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.photolist_hidecaption</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.photolistHideCaption>
+
+					<settings.photolistHideAlbumTitle>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.photolist_hidealbumtitle</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.photolistHideAlbumTitle>
+
+					<settings.photolistHideAlbumDescription>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.photolist_hidealbumdescription</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.photolistHideAlbumDescription>
+
+					<settings.photolistNoTitleHead>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.photolist_notitlehead</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.photolistNoTitleHead>
                 </el>
             </ROOT>
         </sheet2>

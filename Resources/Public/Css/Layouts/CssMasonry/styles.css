@@ -34,6 +34,9 @@
 	height:100%;
 
 }
+.cssmasonryalbumlist.hovercontainer.titlehidden.descrhidden {
+    display:none !important;
+}
 .cssmasonryalbumlist.descriptioncontainer a {
 	color:white;
 	text-decoration: none;
@@ -50,7 +53,13 @@
     width:100%;
     opacity:0.0;
 }
+.cssmasonryalbumlist.descriptioncontainer.titlehidden hr, .cssmasonryalbumlist.descriptioncontainer.descrhidden hr {
+    display:none;
+}
 
+.cssmasonryalbumlist.descriptioncontainer.titlehidden.descrhidden {
+    display:none !important;
+}
 /* END hover effect */
 
 

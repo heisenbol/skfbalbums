@@ -6,14 +6,11 @@
 <f:section name="main">
 	<f:flashMessages />
 
-	<f:render partial="Album/Show/{photolayout}" arguments="{album:album, cobjUid:cobjUid, useFbRedirectUrls:useFbRedirectUrls, uniteOptions: uniteOptions}" />
-
+	<f:render partial="Album/Show/{photolayout}" arguments="{album:album, cobjUid:cobjUid, useFbRedirectUrls:useFbRedirectUrls, uniteOptions: uniteOptions, photolistHideCaption:photolistHideCaption, photolistHideAlbumTitle:photolistHideAlbumTitle, photolistHideAlbumDescription:photolistHideAlbumDescription}" />
 
 <f:if condition="{showBacklink}">
 	<f:then>
 		<div>
-		
-		
 			<f:link.action action="list"><f:translate key="tx_skfbalbums_albumlistlinktext" /></f:link.action><br />
 		</div>
 	</f:then>

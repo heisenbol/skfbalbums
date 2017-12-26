@@ -27,7 +27,6 @@ if (typeof jQuery == 'undefined') {
 
 }
 else {
-	console.log('aaassssa');
 	jQuery(document).ready(function(){ 
 		if (typeof skfbalbumsUnite !== 'undefined') {
 			var skfbalbumCounter;

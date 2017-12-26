@@ -79,8 +79,29 @@
 			<trans-unit id="flexforms.albumlistlayout">
 				<source>Album list layout</source>
 			</trans-unit>
+
+
+			<trans-unit id="flexforms.albumlist_hidetitle">
+				<source>Do not show the album title</source>
+			</trans-unit>
+			<trans-unit id="flexforms.albumlist_hidedescription">
+				<source>Do not show the album description</source>
+			</trans-unit>
+
 			<trans-unit id="flexforms.singlealbumlayout">
 				<source>Single album layout</source>
+			</trans-unit>
+			<trans-unit id="flexforms.photolist_hidecaption">
+				<source>Do not show photo caption</source>
+			</trans-unit>
+			<trans-unit id="flexforms.photolist_hidealbumtitle">
+				<source>Do not show album title</source>
+			</trans-unit>
+			<trans-unit id="flexforms.photolist_hidealbumdescription">
+				<source>Do not show album description</source>
+			</trans-unit>
+			<trans-unit id="flexforms.photolist_notitlehead">
+				<source>Do not use album title in HTML head title</source>
 			</trans-unit>
 
 			<trans-unit id="flexforms.album_list.layoutplain">

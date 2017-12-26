@@ -7,23 +7,25 @@
 	<div class="tx-skfbalbums cssmasonryalbumlist masonrycontainer" >
 		<f:for each="{albums}" as="album">
 			<div class="tx-skfbalbums cssmasonryalbumlist masonryitem">
-				
-				<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
-				
-				<p>{album.effectiveName}</p>
-				<div class='cssmasonryalbumlist hovercontainer'>
+				<f:link.action action="show" arguments="{album : album}">
+					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
+				</f:link.action>
+				{f:if(condition: albumlistHideTitle, then: '', else: album.effectiveName)}
+
+
+				<div class="cssmasonryalbumlist hovercontainer {f:if(condition: albumlistHideTitle, then: 'titlehidden', else: '')} {f:if(condition: albumlistHideDescription, then: 'descrhidden', else: '')} ">
 					&nbsp;
 				</div>
-				<div class='cssmasonryalbumlist descriptioncontainer'>
+				<div class="cssmasonryalbumlist descriptioncontainer {f:if(condition: albumlistHideTitle, then: 'titlehidden', else: '')} {f:if(condition: albumlistHideDescription, then: 'descrhidden', else: '')}">
 					<p>
 						<f:link.action action="show" arguments="{album : album}">
-							{album.effectiveName}
+							{f:if(condition: albumlistHideTitle, then: '', else: album.effectiveName)}
 						</f:link.action>
 					</p>
 					<hr>
 					<p>
 						<f:link.action action="show" arguments="{album : album}">
-							{album.effectiveDescription}
+							{f:if(condition: albumlistHideDescription, then: '', else: album.effectiveDescription)}
 						</f:link.action>
 					</p>
 				</div>

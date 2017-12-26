@@ -125,6 +125,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('albumlayout', $this->settings['albumlayout']);
         $this->view->assign('albums', $albumsForView);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
+        $this->view->assign('albumlistHideTitle', $this->settings['albumlistHideTitle']);
+        $this->view->assign('albumlistHideDescription', $this->settings['albumlistHideDescription']);
+
     }
 
     /**
@@ -146,8 +149,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
             return;
         }
-        
-        $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
+        if (!$this->settings['photolistNoTitleHead']) {
+            $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
+        }
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
         if (!$this->settings || !array_key_exists('photolayout',$this->settings) || !$this->settings['photolayout']) {
@@ -323,6 +327,10 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
+        $this->view->assign('photolistHideCaption', $this->settings['photolistHideCaption']);
+        $this->view->assign('photolistHideAlbumTitle', $this->settings['photolistHideAlbumTitle']);
+        $this->view->assign('photolistHideAlbumDescription', $this->settings['photolistHideAlbumDescription']);
+
     }
 
     /**

@@ -6,14 +6,14 @@
 			<li class="tx-skfbalbums defaultalbumlistalbum">
 				<h3>
 					<f:link.action action="show" arguments="{album : album}">
-						{album.effectiveName}
+						{f:if(condition: albumlistHideTitle, then: '', else: album.effectiveName)}
 					</f:link.action>
 				</h3>
 				<f:link.action action="show" arguments="{album : album}">
 					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				</f:link.action>
 				<p>
-					{album.effectiveDescription}
+					{f:if(condition: albumlistHideDescription, then: '', else: album.effectiveDescription)}
 				</p>
 				<hr>
 			</li>

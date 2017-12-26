@@ -1,15 +1,21 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 {namespace fbalbum=Skar\Skfbalbums\ViewHelpers}
-	<h1>{album.effectiveName}</h1>
-	<p>{album.effectiveDescription}</p>
-	<f:comment>
-		<f:render partial="Album/Properties" arguments="{album:album}" />
-	</f:comment>
+	<f:if condition="{photolistHideAlbumTitle}==0">
+		<f:then>
+			<h1>{album.effectiveName}</h1>
+		</f:then>
+	</f:if>
+	<f:if condition="{photolistHideAlbumDescription}==0">
+		<f:then>
+			<p>{album.effectiveDescription}</p>
+		</f:then>
+	</f:if>
+
 
 	<f:for each="{album.photos}" as="photo">
 
 				<p><img src="{fbalbum:fbImage(photo: photo, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
-				<br>{photo.effectiveCaption}
+				<br>{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}
 				</p>
 	</f:for>
 </html>
