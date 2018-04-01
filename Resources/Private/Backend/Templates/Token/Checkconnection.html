@@ -1,0 +1,27 @@
+
+<f:layout name="Default" />
+
+
+<f:section name="content">
+<h1><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:checkconnectionresultheading" /> {token.name}</h1>
+<f:flashMessages />
+
+
+<f:if condition="{result}">
+	<f:then>
+		<p>Facebook connection was successful</p>
+	</f:then>
+	<f:else>
+		<p>There was an error connecting to Facebook</p>
+		<p>{ex.message}</p>
+		<p>Check the response headers from the connection call below. If there is a header "WWW-Authenticate", pay attention to the message in this header to figure out what went wrong.</p>
+		<pre>
+		<f:for each="{ex.responseHeaders}" as="header">
+{header}
+		</f:for>
+		</pre>
+
+	</f:else>
+</f:if>
+
+</f:section>

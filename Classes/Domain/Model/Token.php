@@ -284,27 +284,48 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         */
     }
 
+    /**
+     * checkconnection
+     *
+     * @return void
+     */
+    public function checkconnection() {
+
+        $accessToken = $this->retrieveAccessToken();
+        // will throw exception if something is wrong
+
+        return TRUE;
+    }
+
+    /**
+     * @return String
+     * @throws \Skar\Skfbalbums\Helper\CommunicationException
+     */
     private function retrieveAccessToken() {
         $appId = $this->getAppId();
         $appSecret = $this->getAppSecret();
         $graphActLink = "https://graph.facebook.com/oauth/access_token?client_id={$appId}&client_secret={$appSecret}&grant_type=client_credentials";
         $accessTokenJson = file_get_contents($graphActLink);
         if ($accessTokenJson === FALSE) {
-            $this->logError("Error getting client credentials from Facebook. The app id or app secret might be wrong, or there may be other kind of restrictions like an IP restriction Token id: ".$this->getUid());
-            return FALSE;
+            $msg = "Error getting client credentials from Facebook. The app id or app secret might be wrong, or there may be other kind of restrictions like an IP restriction. Token id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+            //return FALSE;
         }
 
         // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("access token:".$accessTokenJson); 
 
         $accessTokenObj = json_decode($accessTokenJson);
         if ($accessTokenObj === NULL) {
-            $this->logError("Error decoding json response after call for getting client credentials from Facebook. Token id: ".$this->getUid());
-            return FALSE;
+            $msg = "Error decoding json response after call for getting client credentials from Facebook. Token id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg);
         }
         $accessToken = $accessTokenObj->access_token;
         if (!$accessToken) {
-            $this->logError("Error getting access token from client credential response. Token id: ".$this->getUid());
-            return FALSE;
+            $msg = "Error getting access token from client credential response. Token id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg);
         }
 
         return $accessToken;
@@ -361,18 +382,19 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $fbPhotoData;
     }
 
+
+
     /**
      * sync
      *
      * @return void
      */
     public function sync() {
-        // todo - do not sync if it was synced recently. Have a parameter to force it
+        // TODO ? - do not sync if it was synced recently. Have a parameter to force it
 
         $accessToken = $this->retrieveAccessToken();
-        if ($accessToken === FALSE) {
-            return FALSE;
-        }
+        // will throw exception if something is wrong
+
 
 
         $albums = $this->retrievePageAlbums($accessToken);

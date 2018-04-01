@@ -10,12 +10,13 @@
 
 <table  class="tx_skfbalbums" style="width:100%">
 	<tr><th><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:tokenheading" /></th>
-	<th><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:albumsheading" /></th><th></th></tr>
+	<th><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:albumsheading" /></th><th></th><th></th></tr>
 
 	<f:for each="{tokens}" as="token">
 		<tr>
 			<td>{token.name}</td>
 			<td>{token.albumCountNonHidden} ({token.albumCountHidden})</td>
+			<td><f:link.action action="checkconnection" arguments="{token : token}"><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:checkconnectiontext" /></f:link.action></td>
 			<td><f:link.action action="sync" arguments="{token : token}"><f:translate key="LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xml:synclinktext" /></f:link.action></td>
 		</tr>	
 	</f:for>

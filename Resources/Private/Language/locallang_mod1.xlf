@@ -24,7 +24,13 @@
 			<trans-unit id="synclinktext">
 				<source>Sync now</source>
 			</trans-unit>
+			<trans-unit id="checkconnectiontext">
+				<source>Check connection</source>
+			</trans-unit>
 
+			<trans-unit id="checkconnectionresultheading">
+				<source>Connection result for Facebook Token</source>
+			</trans-unit>
 			<trans-unit id="syncresultheading">
 				<source>Synchronization result for Facebook Token</source>
 			</trans-unit>

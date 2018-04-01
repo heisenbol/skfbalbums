@@ -37,7 +37,7 @@ call_user_func(
                 'mod1', // Submodule key
                 '', // Position
                 [
-                    'Token' => 'synclist,sync',
+                    'Token' => 'synclist,sync,checkconnection',
                 ],
                 [
                     'access' => 'user,group',

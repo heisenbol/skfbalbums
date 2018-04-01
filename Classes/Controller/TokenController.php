@@ -57,17 +57,48 @@ class TokenController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function syncAction(\Skar\Skfbalbums\Domain\Model\Token $token)
     {
 
-        $syncResult = $token->sync();
-        $this->view->assign('token', $token);
-        $error = FALSE;
-        if ($syncResult === FALSE) {
-            $error = TRUE;
+
+        try {
+            $syncResult = $token->sync();
+            $this->view->assign('token', $token);
+            $error = FALSE;
+            if ($syncResult === FALSE) {
+                $error = TRUE;
+            }
+            else {
+                $this->view->assign('syncError', $error);
+                $this->view->assign('ex', '0');
+                $this->view->assign('albumsUpdated', $syncResult['albumsUpdated']);
+                $this->view->assign('albumsImported', $syncResult['albumsImported']);
+                $this->view->assign('albumsHidden', $syncResult['albumsHidden']);
+            }
         }
-        else {
-            $this->view->assign('syncError', $error);
-            $this->view->assign('albumsUpdated', $syncResult['albumsUpdated']);
-            $this->view->assign('albumsImported', $syncResult['albumsImported']);
-            $this->view->assign('albumsHidden', $syncResult['albumsHidden']);
+        catch (\Skar\Skfbalbums\Helper\CommunicationException $ex) {
+            $this->view->assign('syncError', TRUE);
+            $this->view->assign('ex', $ex);
         }
+
+
+
+    }
+
+    /**
+     * action sync
+     * @param \Skar\Skfbalbums\Domain\Model\Token $token
+     * @return void
+     */
+    public function checkconnectionAction(\Skar\Skfbalbums\Domain\Model\Token $token)
+    {
+
+        try {
+            $token->checkconnection();
+            $this->view->assign('result', TRUE);
+        }
+        catch (\Skar\Skfbalbums\Helper\CommunicationException $ex) {
+            $this->view->assign('result', FALSE);
+            $this->view->assign('ex', $ex);
+        }
+        
+        
     }
 }
