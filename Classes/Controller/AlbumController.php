@@ -120,13 +120,14 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addCacheTags('tx_skfbalbums_domain_model_album'); 
 
 
-
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
         $this->view->assign('albumlayout', $this->settings['albumlayout']);
         $this->view->assign('albums', $albumsForView);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
         $this->view->assign('albumlistHideTitle', $this->settings['albumlistHideTitle']);
         $this->view->assign('albumlistHideDescription', $this->settings['albumlistHideDescription']);
+        $this->view->assign('albumlistCssMasonryColumns', intval($this->settings['albumlistCssMasonryColumns']));
+
 
     }
 

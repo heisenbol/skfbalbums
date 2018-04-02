@@ -87,6 +87,9 @@
 			<trans-unit id="flexforms.albumlist_hidedescription">
 				<source>Do not show the album description</source>
 			</trans-unit>
+			<trans-unit id="flexforms.albumlist_cssmasonrycolumns">
+				<source>Number of columns for Masonry. Leave blank for automatic</source>
+			</trans-unit>
 
 			<trans-unit id="flexforms.singlealbumlayout">
 				<source>Single album layout</source>

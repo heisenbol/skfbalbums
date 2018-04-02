@@ -4,13 +4,13 @@
 
 
 <div class="tx-skfbalbums masonrywrapper">
-	<div class="tx-skfbalbums cssmasonryalbumlist masonrycontainer" >
+	<div class="tx-skfbalbums cssmasonryalbumlist masonrycontainer" style="{f:if(condition: albumlistCssMasonryColumns, then: '-moz-column-count: {albumlistCssMasonryColumns};-webkit-column-count: {albumlistCssMasonryColumns}; column-count: {albumlistCssMasonryColumns};', else: '')}">
 		<f:for each="{albums}" as="album">
 			<div class="tx-skfbalbums cssmasonryalbumlist masonryitem">
 				<f:link.action action="show" arguments="{album : album}">
 					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				</f:link.action>
-				{f:if(condition: albumlistHideTitle, then: '', else: album.effectiveName)}
+				
 
 
 				<div class="cssmasonryalbumlist hovercontainer {f:if(condition: albumlistHideTitle, then: 'titlehidden', else: '')} {f:if(condition: albumlistHideDescription, then: 'descrhidden', else: '')} ">

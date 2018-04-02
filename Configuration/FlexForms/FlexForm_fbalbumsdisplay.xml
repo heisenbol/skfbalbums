@@ -123,6 +123,7 @@
 					<settings.albumlayout>
 						<TCEforms>
 							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.albumlistlayout</label>
+							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -164,6 +165,21 @@
 							</config>
 						</TCEforms>
 					</settings.albumlistHideDescription>
+
+					<settings.albumlistCssMasonryColumns>
+						<TCEforms>
+							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.albumlist_cssmasonrycolumns</label>
+		                    <displayCond>
+							    <OR>
+							        <numIndex index="0"><![CDATA[FIELD:settings.albumlayout:=:CssMasonry]]></numIndex>
+							    </OR>
+		                    </displayCond>
+							<config>
+								<type>input</type>
+								<default></default>
+							</config>
+						</TCEforms>
+					</settings.albumlistCssMasonryColumns>
 
                 </el>
             </ROOT>
