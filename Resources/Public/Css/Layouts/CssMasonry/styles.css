@@ -19,6 +19,7 @@
 
 .masonryitem:hover .cssmasonryalbumlist.hovercontainer {
 	opacity:0.9;
+    pointer-events:none;
 } 
 .masonryitem:hover .cssmasonryalbumlist.descriptioncontainer {
 	opacity:1;
