@@ -61,12 +61,12 @@ class TokenController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         try {
             $syncResult = $token->sync();
             $this->view->assign('token', $token);
-            $error = FALSE;
             if ($syncResult === FALSE) {
-                $error = TRUE;
+                $this->view->assign('syncError', TRUE);
+                $this->view->assign('ex', '0');
             }
             else {
-                $this->view->assign('syncError', $error);
+                $this->view->assign('syncError', $generalError);
                 $this->view->assign('ex', '0');
                 $this->view->assign('albumsUpdated', $syncResult['albumsUpdated']);
                 $this->view->assign('albumsImported', $syncResult['albumsImported']);
