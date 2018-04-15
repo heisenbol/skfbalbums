@@ -6,9 +6,11 @@ namespace Skar\Skfbalbums\Helper;
 class CommunicationException extends \Exception
 {
 	private $http_response_header;
+    private $response;
 
-    public function __construct($message, $code = 0, \Exception $previous = null, $http_response_header = null) {
-    	$this->http_response_header = $http_response_header+[];
+    public function __construct($message, $code = 0, \Exception $previous = null, $http_response_header = null, $response = null) {
+        $this->http_response_header = $http_response_header+[];
+        $this->response = $response;
         parent::__construct($message, $code, $previous);
     }
 

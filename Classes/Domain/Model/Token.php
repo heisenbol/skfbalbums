@@ -323,7 +323,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         }
         $accessToken = $accessTokenObj->access_token;
         if (!$accessToken) {
-            $msg = "Error getting access token from client credential response. Token id: ".$this->getUid();
+            $msg = "Error getting access token from client credential response. Token TYPO3 id: ".$this->getUid();
             $this->logError($msg);
             throw new \Skar\Skfbalbums\Helper\CommunicationException($msg);
         }
@@ -334,7 +334,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     private function retrievePageAlbums($accessToken) {
         $pageId = $this->getPageId();
         $fields = "id,name,description,link,cover_photo,count";
-        $graphAlbLink = "https://graph.facebook.com/v2.10/{$pageId}/albums?fields={$fields}&access_token={$accessToken}";
+        $graphAlbLink = "https://graph.facebook.com/v2.12/{$pageId}/albums?fields={$fields}&access_token={$accessToken}";
 
         $jsonData = file_get_contents($graphAlbLink);
         $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
@@ -342,8 +342,15 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
             $fbAlbumData = $fbAlbumObj['data'];
         }
+        else if ($fbAlbumObj) {
+            $msg = "Error retrieving page albums for Token TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, null, $fbAlbumObj);
+        }
         else {
-            return FALSE;
+            $msg = "Error retrieving page albums for Token TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
         }
         while ($fbAlbumObj && isset($fbAlbumObj['paging']) && isset($fbAlbumObj['paging']['next'])) {
             \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PAGED RESULT FOR ALBUM"); 
