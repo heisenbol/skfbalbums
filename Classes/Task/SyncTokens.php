@@ -29,7 +29,7 @@ class SyncTokens extends \TYPO3\CMS\Scheduler\Task\AbstractTask implements \TYPO
         return $additionalFields;
     }
     public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject) {
-        $task->includeFolders = $submittedData['includeFolders'];
+        //$task->includeFolders = $submittedData['includeFolders'];
 
         return true;
     }
