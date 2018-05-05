@@ -38,16 +38,16 @@ module.tx_skfbalbums_web_skfbalbumsmod1 {
   }
 }
 
-module.tx_blogexample {
-    settings < plugin.tx_blogexample.settings
-    persistence < plugin.tx_blogexample.persistence
-    view < plugin.tx_blogexample.view
-    view {
-        templateRootPath = EXT:blog_example/Resources/Private/Backend/Templates/
-        partialRootPath = EXT:blog_example/Resources/Private/Partials/
-        layoutRootPath = EXT:blog_example/Resources/Private/Backend/Layouts/
-    }
-}
+#module.tx_blogexample {
+#    settings < plugin.tx_blogexample.settings
+#    persistence < plugin.tx_blogexample.persistence
+#    view < plugin.tx_blogexample.view
+#    view {
+#        templateRootPath = EXT:blog_example/Resources/Private/Backend/Templates/
+#        partialRootPath = EXT:blog_example/Resources/Private/Partials/
+#        layoutRootPath = EXT:blog_example/Resources/Private/Backend/Layouts/
+#    }
+#}
 
 
 
