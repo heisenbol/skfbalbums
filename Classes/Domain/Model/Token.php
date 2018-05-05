@@ -305,7 +305,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $appId = $this->getAppId();
         $appSecret = $this->getAppSecret();
         $graphActLink = "https://graph.facebook.com/oauth/access_token?client_id={$appId}&client_secret={$appSecret}&grant_type=client_credentials";
-        $accessTokenJson = file_get_contents($graphActLink);
+        $accessTokenJson = @file_get_contents($graphActLink);
         if ($accessTokenJson === FALSE) {
             $msg = "Error getting client credentials from Facebook. The app id or app secret might be wrong, or there may be other kind of restrictions like an IP restriction. Token id: ".$this->getUid();
             $this->logError($msg);
@@ -336,7 +336,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $fields = "id,name,description,link,cover_photo,count";
         $graphAlbLink = "https://graph.facebook.com/v2.12/{$pageId}/albums?fields={$fields}&access_token={$accessToken}";
 
-        $jsonData = file_get_contents($graphAlbLink);
+        $jsonData = @file_get_contents($graphAlbLink);
         $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
         if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
@@ -354,7 +354,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         }
         while ($fbAlbumObj && isset($fbAlbumObj['paging']) && isset($fbAlbumObj['paging']['next'])) {
             \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PAGED RESULT FOR ALBUM"); 
-            $jsonData = file_get_contents($fbAlbumObj['paging']['next']);
+            $jsonData = @file_get_contents($fbAlbumObj['paging']['next']);
             $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
             if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
                 $fbAlbumData = $fbAlbumData + $fbAlbumObj['data'];
@@ -368,7 +368,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     private function retrieveAlbumPhotos($accessToken, $albumId) {
         // although in the api it says that name is deprecated and we should use caption instead, caption is empty and name has the correct text. So get both
         $graphPhoLink = "https://graph.facebook.com/v2.10/{$albumId}/photos?fields=id,source,images,caption,name&access_token={$accessToken}";
-        $jsonData = file_get_contents($graphPhoLink);
+        $jsonData = @file_get_contents($graphPhoLink);
         $fbPhotoObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
         if ($fbPhotoObj && isset($fbPhotoObj['data'])) {
@@ -379,7 +379,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         }
         while ($fbPhotoObj && isset($fbPhotoObj['paging']) && isset($fbPhotoObj['paging']['next'])) {
 //            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PAGED RESULT FOR PHOTOS"); 
-            $jsonData = file_get_contents($fbPhotoObj['paging']['next']);
+            $jsonData = @file_get_contents($fbPhotoObj['paging']['next']);
             $fbPhotoObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
             if ($fbPhotoObj && isset($fbPhotoObj['data'])) {
                 $fbPhotoData = $fbPhotoData + $fbPhotoObj['data'];
