@@ -43,16 +43,13 @@
 			</trans-unit>
 
 			<trans-unit id="tx_skfbalbums_domain_model_token">
-				<source>Facebook App Token</source>
+				<source>Facebook Page Token</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_token.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.app_id">
-				<source>App Id</source>
-			</trans-unit>
-			<trans-unit id="tx_skfbalbums_domain_model_token.app_secret">
-				<source>App Secret</source>
+			<trans-unit id="tx_skfbalbums_domain_model_token.access_token">
+				<source>Access Token</source>
 			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_token.page_id">
 				<source>Facebook Page Id</source>

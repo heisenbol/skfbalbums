@@ -8,8 +8,13 @@ class CommunicationException extends \Exception
 	private $http_response_header;
     private $response;
 
-    public function __construct($message, $code = 0, \Exception $previous = null, $http_response_header = null, $response = null) {
-        $this->http_response_header = $http_response_header+[];
+    public function __construct($message, $code = 0, \Exception $previous = NULL, $http_response_header = NULL, $response = NULL) {
+        if ($http_response_header !== NULL) {
+            $this->http_response_header = $http_response_header+[];
+        }
+        else {
+            $this->http_response_header = NULL;
+        }
         $this->response = $response;
         parent::__construct($message, $code, $previous);
     }

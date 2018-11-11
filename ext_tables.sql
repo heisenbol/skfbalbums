@@ -38,8 +38,7 @@ CREATE TABLE tx_skfbalbums_domain_model_token (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
-	app_id varchar(255) DEFAULT '' NOT NULL,
-	app_secret varchar(255) DEFAULT '' NOT NULL,
+	access_token varchar(255) DEFAULT '' NOT NULL,
 	page_id varchar(255) DEFAULT '' NOT NULL,
 	exclude_album_ids text NOT NULL,
 	include_album_ids text NOT NULL,

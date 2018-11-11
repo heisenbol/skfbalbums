@@ -41,7 +41,7 @@ class PhotoRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         else {
             $result = $query->matching($query->logicalAnd($constraint))->execute();
         }
-        
+
   		return $result;
     }
 

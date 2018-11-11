@@ -57,20 +57,13 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $name = '';
 
     /**
-     * Facebook App ID
+     * Facebook Access Token
      *
      * @var string
      * @validate NotEmpty
      */
-    protected $appId = '';
+    protected $accessToken = '';
 
-    /**
-     * Facebook App Secret
-     *
-     * @var string
-     * @validate NotEmpty
-     */
-    protected $appSecret = '';
 
     /**
      * Facebook Page ID
@@ -100,45 +93,24 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
-     * Returns the appId
+     * Returns the accessToken
      *
-     * @return string $appId
+     * @return string $accessToken
      */
-    public function getAppId()
+    public function getAccessToken()
     {
-        return $this->appId;
+        return $this->accessToken;
     }
 
     /**
-     * Sets the appId
+     * Sets the accessToken
      *
-     * @param string $appId
+     * @param string $accessToken
      * @return void
      */
-    public function setAppId($appId)
+    public function setAccessToken($accessToken)
     {
-        $this->appId = $appId;
-    }
-
-    /**
-     * Returns the appSecret
-     *
-     * @return string $appSecret
-     */
-    public function getAppSecret()
-    {
-        return $this->appSecret;
-    }
-
-    /**
-     * Sets the appSecret
-     *
-     * @param string $appSecret
-     * @return void
-     */
-    public function setAppSecret($appSecret)
-    {
-        $this->appSecret = $appSecret;
+        $this->accessToken = $accessToken;
     }
 
     /**
@@ -291,7 +263,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function checkconnection() {
 
-        $accessToken = $this->retrieveAccessToken();
+        $this->retrievePageAlbums(true);
         // will throw exception if something is wrong
 
         return TRUE;
@@ -301,59 +273,37 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @return String
      * @throws \Skar\Skfbalbums\Helper\CommunicationException
      */
-    private function retrieveAccessToken() {
-        $appId = $this->getAppId();
-        $appSecret = $this->getAppSecret();
-        $graphActLink = "https://graph.facebook.com/oauth/access_token?client_id={$appId}&client_secret={$appSecret}&grant_type=client_credentials";
-        $accessTokenJson = @file_get_contents($graphActLink);
-        if ($accessTokenJson === FALSE) {
-            $msg = "Error getting client credentials from Facebook. The app id or app secret might be wrong, or there may be other kind of restrictions like an IP restriction. Token id: ".$this->getUid();
-            $this->logError($msg);
-            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
-            //return FALSE;
-        }
-
-        // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("access token:".$accessTokenJson); 
-
-        $accessTokenObj = json_decode($accessTokenJson);
-        if ($accessTokenObj === NULL) {
-            $msg = "Error decoding json response after call for getting client credentials from Facebook. Token id: ".$this->getUid();
-            $this->logError($msg);
-            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg);
-        }
-        $accessToken = $accessTokenObj->access_token;
-        if (!$accessToken) {
-            $msg = "Error getting access token from client credential response. Token TYPO3 id: ".$this->getUid();
-            $this->logError($msg);
-            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg);
-        }
-
-        return $accessToken;
-    }
-
-    private function retrievePageAlbums($accessToken) {
+    private function retrievePageAlbums($testOnly = false) {
         $pageId = $this->getPageId();
         $fields = "id,name,description,link,cover_photo,count";
-        $graphAlbLink = "https://graph.facebook.com/v2.12/{$pageId}/albums?fields={$fields}&access_token={$accessToken}";
+        $graphAlbLink = "https://graph.facebook.com/v3.2/{$pageId}/albums?fields={$fields}&access_token=".$this->getAccessToken();
 
         $jsonData = @file_get_contents($graphAlbLink);
+        if ($jsonData === FALSE) {
+            $msg = "Error (1) retrieving page albums for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
+        if ($testOnly) {
+            return TRUE;
+        }
         $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
         if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
             $fbAlbumData = $fbAlbumObj['data'];
         }
         else if ($fbAlbumObj) {
-            $msg = "Error retrieving page albums for Token TYPO3 id: ".$this->getUid();
+            $msg = "Error (2) retrieving page albums for Token with TYPO3 id: ".$this->getUid();
             $this->logError($msg);
             throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, null, $fbAlbumObj);
         }
         else {
-            $msg = "Error retrieving page albums for Token TYPO3 id: ".$this->getUid();
+            $msg = "Error (3) retrieving page albums for Token with TYPO3 id: ".$this->getUid();
             $this->logError($msg);
             throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
         }
         while ($fbAlbumObj && isset($fbAlbumObj['paging']) && isset($fbAlbumObj['paging']['next'])) {
-            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PAGED RESULT FOR ALBUM"); 
+            //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("PAGED RESULT FOR ALBUM"); 
             $jsonData = @file_get_contents($fbAlbumObj['paging']['next']);
             $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
             if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
@@ -365,7 +315,8 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     }
 
-    private function retrieveAlbumPhotos($accessToken, $albumId) {
+    private function retrieveAlbumPhotos($albumId) {
+        $accessToken = $this->getAccessToken();
         // although in the api it says that name is deprecated and we should use caption instead, caption is empty and name has the correct text. So get both
         $graphPhoLink = "https://graph.facebook.com/v2.10/{$albumId}/photos?fields=id,source,images,caption,name&access_token={$accessToken}";
         $jsonData = @file_get_contents($graphPhoLink);
@@ -399,12 +350,8 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function sync() {
         // TODO ? - do not sync if it was synced recently. Have a parameter to force it
 
-        $accessToken = $this->retrieveAccessToken();
-        // will throw exception if something is wrong
 
-
-
-        $albums = $this->retrievePageAlbums($accessToken);
+        $albums = $this->retrievePageAlbums();
         if ($albums === FALSE) {
             // TODO some logging or better throw an exception?
             return FALSE;
@@ -415,7 +362,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         foreach($albums as $album) {
             if ($this->allowedFromInclude($album['id']) && $this->allowedFromExclude($album['id'])) {
                 $includedAlbums[] = $album;
-                $photos[$album['id']] = $this->retrieveAlbumPhotos($accessToken, $album['id']);
+                $photos[$album['id']] = $this->retrieveAlbumPhotos($album['id']);
             }
             else {
                // $excludedAlbums[] = $album;
@@ -496,7 +443,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $synResultPhotos = array();
         foreach ($dbAlbumsToSyncPhotos as $album) {
 
-            $synResultPhotos[] = $this->syncPhotos($album, $photos[$album->getFacebookId()], $accessToken);
+            $synResultPhotos[] = $this->syncPhotos($album, $photos[$album->getFacebookId()]);
             $cacheManager->getCache('cache_pages')->flushByTag('tx_skfbalbums_domain_model_album_' . $album->getUid());
         } 
         
@@ -508,7 +455,8 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         ];
     }
 
-    private function syncPhotos(\Skar\Skfbalbums\Domain\Model\Album $album, $albumFbPhotos, $accessToken) {
+    private function syncPhotos(\Skar\Skfbalbums\Domain\Model\Album $album, $albumFbPhotos) {
+        $accessToken = $this->getAccessToken();
         // load all existing db photos that belong to this db album
         // we import all photos. User can hide them (NOT DELETE!) in the BE
         // if an includedPhoto is already in the db, update it

@@ -79,6 +79,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function listAction()
     {
         $albums = $this->albumRepository->findAll(); 
+
         $noAlbums = true;
         $albumsForView = [];
         foreach($albums as $album) {
@@ -108,8 +109,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
         }
         if ($noAlbums) {
-
-            
             $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_noalbumsavailableerror','skfbalbums'), 
                 '', 
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING
