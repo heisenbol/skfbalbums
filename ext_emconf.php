@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'FB Albums',
-    'description' => ' Show Facebook Page Albums and Photos on your site. No actual image files are downloaded. It uses image urls as given by facebook.',
+    'description' => 'Show Facebook Page Albums and Photos on your site. No actual image files are downloaded. It uses image urls as given by Facebook.',
     'category' => 'plugin',
     'author' => 'Stefanos Karasavvidis',
     'author_email' => 'sk@karasavvidis.gr',
@@ -21,10 +21,10 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '0.0.14',
+    'version' => '0.0.15dev',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.0-8.7.99',
+            'typo3' => '8.7.99-9.5.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -4,21 +4,31 @@ namespace Skar\Skfbalbums\ViewHelpers;
 
 class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
-   
+    /**
+     * Initialize additional argument
+     */
+    public function initializeArguments()
+    {
+        $this->registerArgument('photo', 'object', 'The photo object', TRUE);
+        $this->registerArgument('size', 'string', 'Size of image', FALSE, 'medium');
+        $this->registerArgument('useFbRedirectUrls', 'bool', 'Use of redirect urls', FALSE, FALSE);
+        parent::initializeArguments();
+    }
+
 	/**
-	* @param \Skar\Skfbalbums\Domain\Model\Photo $photo
-	* @param string $size
-	* @param bool $useFbRedirectUrls
 	* @return string
 	*/
-	public function render($photo, $size = 'medium', $useFbRedirectUrls = FALSE) {
+	public function render() {
 		//$uriBuilder = $this->controllerContext->getUriBuilder();
-
+		$photo = $this->arguments['photo'];
+		$size = $this->arguments['size'];
+		$useFbRedirectUrls = $this->arguments['useFbRedirectUrls'];
+		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->arguments); 
 
         $uri = 'EXT:skfbalbums/Resources/Public/Images/defaultalbumcover.png';
-        $uri = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($uri);
-        $uri = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix($uri);
-		$uri = $this->controllerContext->getRequest()->getBaseUri().$uri;
+        //$uri = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($uri);
+        //$uri = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix($uri);
+		$uri = $this->renderingContext->getControllerContext()->getRequest()->getBaseUri().$uri;
 
 		$result = $uri;
 

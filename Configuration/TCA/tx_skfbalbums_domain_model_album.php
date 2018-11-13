@@ -105,6 +105,7 @@ return [
 			    'type' => 'input',
 			    'size' => 10,
 			    'eval' => 'datetime',
+			    'renderType' => 'inputDateTime',
 			    'default' => time()
 			],
 	    ],
