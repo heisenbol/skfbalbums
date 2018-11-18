@@ -17,6 +17,12 @@ namespace Skar\Skfbalbums\Controller;
  */
 class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    const ALBUMLAYOUT = 'albumlayout';
+    const PLAIN = 'Plain';
+    const CSSMASONRY = 'CssMasonry';
+    const EXTKEY = 'skfbalbums';
+    const PHOTOLAYOUT = 'photolayout';
+    const ALBUM = 'album';
 
     /**
      * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
@@ -62,12 +68,11 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             static $cacheTagsSet = FALSE;
 
             /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController  */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
+            $this->typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                $typoScriptFrontendController->addCacheTags(array($cacheTag));
+                $this->typoScriptFrontendController->addCacheTags(array($cacheTag));
                 $cacheTagsSet = TRUE;
             }
-            $this->typoScriptFrontendController = $typoScriptFrontendController;
         }
     }
 
@@ -99,17 +104,17 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         
-        if (!$this->settings || !array_key_exists('albumlayout',$this->settings) || !$this->settings['albumlayout']) {
-            $this->settings['albumlayout'] = "Plain";
+        if (!$this->settings || !array_key_exists(self::ALBUMLAYOUT,$this->settings) || !$this->settings[self::ALBUMLAYOUT]) {
+            $this->settings[self::ALBUMLAYOUT] = self::PLAIN;
         }
 
-        if ($this->settings['albumlayout'] == 'Plain' || $this->settings['albumlayout'] == 'CssMasonry') {
+        if ($this->settings[self::ALBUMLAYOUT] == self::PLAIN || $this->settings[self::ALBUMLAYOUT] == self::CSSMASONRY) {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
-                . 'Resources/Public/Css/Layouts/'.$this->settings['albumlayout'].'/styles.css" />');
+                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
+                . 'Resources/Public/Css/Layouts/'.$this->settings[self::ALBUMLAYOUT].'/styles.css" />');
         }
         if ($noAlbums) {
-            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_noalbumsavailableerror','skfbalbums'), 
+            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_noalbumsavailableerror',self::EXTKEY), 
                 '', 
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING
                 );
@@ -120,7 +125,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
-        $this->view->assign('albumlayout', $this->settings['albumlayout']);
+        $this->view->assign(self::ALBUMLAYOUT, $this->settings[self::ALBUMLAYOUT]);
         $this->view->assign('albums', $albumsForView);
         $this->view->assign('useFbRedirectUrls', $this->settings['useFbRedirectUrls']);
         $this->view->assign('albumlistHideTitle', $this->settings['albumlistHideTitle']);
@@ -140,12 +145,12 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function showAction(\Skar\Skfbalbums\Domain\Model\Album $album, $showBacklink = true)
     {
         if (!$album->getUid()) {
-            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_nosinglealbumerror','skfbalbums'), 
+            $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_skfbalbums_nosinglealbumerror',self::EXTKEY), 
                 '', 
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING
                 );
-            $this->view->assign('photolayout', 'Plain');
-            $this->view->assign('album', $album);
+            $this->view->assign(self::PHOTOLAYOUT, self::PLAIN);
+            $this->view->assign(self::ALBUM, $album);
 
             return;
         }
@@ -154,28 +159,28 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
-        if (!$this->settings || !array_key_exists('photolayout',$this->settings) || !$this->settings['photolayout']) {
-            $this->settings['photolayout'] = "Plain";
+        if (!$this->settings || !array_key_exists(self::PHOTOLAYOUT,$this->settings) || !$this->settings[self::PHOTOLAYOUT]) {
+            $this->settings[self::PHOTOLAYOUT] = self::PLAIN;
         }
 
 
-        if ($this->settings['photolayout'] == 'Plain' || $this->settings['photolayout'] == 'CssMasonry') {
+        if ($this->settings[self::PHOTOLAYOUT] == self::PLAIN || $this->settings[self::PHOTOLAYOUT] == self::CSSMASONRY) {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
-                . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
+                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
+                . 'Resources/Public/Css/Layouts/'.$this->settings[self::PHOTOLAYOUT].'/styles.css" />');
         }
-        if ($this->settings['photolayout'] == 'CssMasonry') {
+        if ($this->settings[self::PHOTOLAYOUT] == self::CSSMASONRY) {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                 . 'Resources/Public/Libs/jsOnlyLightbox/css/lightbox.css" />');
         }
         $uniteOptions = [];
-        if ($this->settings['photolayout'] == 'Unitegallery') {
+        if ($this->settings[self::PHOTOLAYOUT] == 'Unitegallery') {
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
-                . 'Resources/Public/Css/Layouts/'.$this->settings['photolayout'].'/styles.css" />');
+                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
+                . 'Resources/Public/Css/Layouts/'.$this->settings[self::PHOTOLAYOUT].'/styles.css" />');
             $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                 . 'Resources/Public/Libs/Unitegallery/css/unite-gallery.css" />');
 
             if (!$this->settings || !array_key_exists('unitetheme',$this->settings) || !$this->settings['unitetheme'] 
@@ -190,7 +195,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
 
-            $uniteLibJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+            $uniteLibJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                 . 'Resources/Public/Libs/Unitegallery/js/unitegallery.min.js';
 
 
@@ -201,52 +206,52 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $uniteLibThemeJsFile = null;
             if ($uniteTheme == 'default') {
                 $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-                    . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                    . \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/default/ug-theme-default.css" />');
 
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/default/ug-theme-default.js';
             }
             else if ($uniteTheme == 'tilescolumns') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
 
             }
             else if ($uniteTheme == 'tilesjustified') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
                 $uniteOptions['tiles_type'] = "justified";
             }
             else if ($uniteTheme == 'tilesnested') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/tiles/ug-theme-tiles.js';
                 $uniteOptions['gallery_theme'] = "tiles";
                 $uniteOptions['tiles_type'] = "nested";
             }
             else if ($uniteTheme == 'tilesgrid') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js';
                 $uniteOptions['gallery_theme'] = "tilesgrid";
             }
             else if ($uniteTheme == 'carousel') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/carousel/ug-theme-carousel.js';
                 $uniteOptions['gallery_theme'] = "carousel";
             }
             else if ($uniteTheme == 'compact') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/compact/ug-theme-compact.js';
                 $uniteOptions['gallery_theme'] = "compact";
             }
             else if ($uniteTheme == 'gridtheme') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/grid/ug-theme-grid.js';
                 $uniteOptions['gallery_theme'] = "grid";
             }
             else if ($uniteTheme == 'slider') {
-                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
+                $uniteLibThemeJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
                     . 'Resources/Public/Libs/Unitegallery/themes/slider/ug-theme-slider.js';
                 $uniteOptions['gallery_theme'] = "slider";
             }
@@ -254,8 +259,8 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->pageRenderer->addJsFooterLibrary("skfbalbumsunitethemelib".$uniteTheme, $uniteLibThemeJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
             }
             
-            $uniteInitJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')) 
-                . 'Resources/Public/Js/Layouts/'.$this->settings['photolayout'].'/uniteinit.js';
+            $uniteInitJsFile = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(self::EXTKEY)) 
+                . 'Resources/Public/Js/Layouts/'.$this->settings[self::PHOTOLAYOUT].'/uniteinit.js';
             $this->pageRenderer->addJsFooterFile($uniteInitJsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
             //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterLibrary ($name, $file, $type= 'text/javascript', $compress=false, $forceOnTop=false, $allWrap= '', $excludeFromConcatenation=false, $splitChar= '|', $async=false, $integrity= '')
             //$GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($jsFile, 'text/javascript', TRUE, FALSE, '', TRUE); 
@@ -321,8 +326,8 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $this->addCacheTags('tx_skfbalbums_domain_model_album_'.$album->getUid()); // the database table name of your domain model plus the UID of your record
         //in view use {settings.photolayout}. But this does not work when changing the setting. So use a variable instead
-        $this->view->assign('photolayout', $this->settings['photolayout']);
-        $this->view->assign('album', $album);
+        $this->view->assign(self::PHOTOLAYOUT, $this->settings[self::PHOTOLAYOUT]);
+        $this->view->assign(self::ALBUM, $album);
         $this->view->assign('uniteOptions', json_encode($uniteOptions, JSON_FORCE_OBJECT));
         $this->view->assign('showBacklink', $showBacklink);
         $this->view->assign('cobjUid', $this->configurationManager->getContentObject()->data['uid']);
@@ -342,9 +347,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // USE switchable action with flexform
         $album = null;
         $showBacklink = true;
-        if($this->request->hasArgument('album')){
+        if($this->request->hasArgument(self::ALBUM)){
             //$album=$this->albumRepository->findByUid( intval($this->request->getArgument('album')) );
-            $albumId = $this->request->getArgument('album');
+            $albumId = $this->request->getArgument(self::ALBUM);
             $showBacklink = true;
         }
         else { // try to get it from flexform
@@ -359,14 +364,14 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
         if( $album ){
-            $this->request->setArgument('album',$album);
+            $this->request->setArgument(self::ALBUM,$album);
             $this->request->setArgument('showBacklink',$showBacklink);
             return;
         }
         else {
 
             $album = new \Skar\Skfbalbums\Domain\Model\Album;
-            $this->request->setArgument('album',$album);
+            $this->request->setArgument(self::ALBUM,$album);
             return;
         }
         

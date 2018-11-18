@@ -241,7 +241,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     private function logError($message) {
         global $BE_USER;
-        $BE_USER->simplelog($message, $extKey='skfbalbums', 2);
+        $BE_USER->simplelog($message, 'skfbalbums', 2);
         /*
         $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $logger->info('Everything went fine.'. "  includeFolders is $includeFolders");
@@ -456,7 +456,6 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     private function syncPhotos(\Skar\Skfbalbums\Domain\Model\Album $album, $albumFbPhotos) {
-        $accessToken = $this->getAccessToken();
         // load all existing db photos that belong to this db album
         // we import all photos. User can hide them (NOT DELETE!) in the BE
         // if an includedPhoto is already in the db, update it

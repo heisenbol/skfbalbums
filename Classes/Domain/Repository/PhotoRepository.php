@@ -27,10 +27,10 @@ class PhotoRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getPhotosByAlbum(\Skar\Skfbalbums\Domain\Model\Album $album, $includeHidden, $onlyCount = false) {
     	
         $query = $this->createQuery();
-    		//$query->getQuerySettings()->setRespectStoragePage(false);
-     		if ($includeHidden) {
-    	        $query->getQuerySettings()->setIgnoreEnableFields(TRUE)->setIncludeDeleted(false);;
-     		}
+		//$query->getQuerySettings()->setRespectStoragePage(false);
+ 		if ($includeHidden) {
+	        $query->getQuerySettings()->setIgnoreEnableFields(TRUE)->setIncludeDeleted(false);
+ 		}
         $query->getQuerySettings()->setStoragePageIds(array($album->getPid())); // may be called from scheduler. So set here the pid to look for
 
         $constraint[] = $query->equals('album', $album);
@@ -55,8 +55,6 @@ class PhotoRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
  
         $query->setLimit(1);
-        $result = $query->matching($query->logicalAnd($constraint))->execute()->getFirst();
-        
-  		return $result;
+        return $query->matching($query->logicalAnd($constraint))->execute()->getFirst();
     }
 }

@@ -87,13 +87,10 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		switch ($size) {
 		    case 'large':
 		        return $imagesArray[$largestNdx]['source'];
-		        break;
 		    case 'small':
 		        return $imagesArray[$smallestNdx]['source'];
-		        break;
 		    case 'medium':
 		        return $imagesArray[$mediumNdx]['source'];
-		        break;
 		}
 		
 	}

@@ -120,9 +120,6 @@ class FlexformPreview
 
             $result .= '</ul>';
             return $result;
-//                .'<br><pre>aaaaa'.print_r($this->flexformData,true).'</pre>'
-//                .'<br><pre>bbbb'.htmlspecialchars(print_r($params,true)).'</pre>'
-                ;
         }
         return '';
     }
