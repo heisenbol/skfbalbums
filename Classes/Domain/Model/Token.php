@@ -318,7 +318,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     private function retrieveAlbumPhotos($albumId) {
         $accessToken = $this->getAccessToken();
         // although in the api it says that name is deprecated and we should use caption instead, caption is empty and name has the correct text. So get both
-        $graphPhoLink = "https://graph.facebook.com/v2.10/{$albumId}/photos?fields=id,source,images,caption,name&access_token={$accessToken}";
+        $graphPhoLink = "https://graph.facebook.com/v3.2/{$albumId}/photos?fields=id,source,images,caption,name&access_token={$accessToken}";
         $jsonData = @file_get_contents($graphPhoLink);
         $fbPhotoObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
