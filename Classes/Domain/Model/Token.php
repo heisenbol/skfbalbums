@@ -277,17 +277,22 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $pageId = $this->getPageId();
         $fields = "id,name,description,link,cover_photo,count";
         $graphAlbLink = "https://graph.facebook.com/v3.2/{$pageId}/albums?fields={$fields}&access_token=".$this->getAccessToken();
-
         $jsonData = @file_get_contents($graphAlbLink);
         if ($jsonData === FALSE) {
             $msg = "Error (1) retrieving page albums for Token with TYPO3 id: ".$this->getUid();
             $this->logError($msg);
             throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
         }
+        $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
+
         if ($testOnly) {
+            if (!isset($fbAlbumObj['data']) || !is_array(count($fbAlbumObj['data'])) || count($fbAlbumObj['data']) == 0) {
+                $msg = "Connection successful but returned empty album list for Token with TYPO3 id: ".$this->getUid();
+                $this->logError($msg);
+                throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, null, $fbAlbumObj);
+            }
             return TRUE;
         }
-        $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
         if ($fbAlbumObj && isset($fbAlbumObj['data'])) {
             $fbAlbumData = $fbAlbumObj['data'];
