@@ -13,7 +13,7 @@
 				<source>Facebook Tokens for Albums on this page</source>
 			</trans-unit>
 			<trans-unit id="instructions">
-				<source>Click on the sync link for each token to syncrhonize Albums and Photos</source>
+				<source>Click on the sync link for each token to synchronize Albums and Photos</source>
 			</trans-unit>
 			<trans-unit id="tokenheading">
 				<source>Token</source>
