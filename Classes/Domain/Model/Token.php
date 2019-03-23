@@ -263,9 +263,48 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function checkconnection() {
 
-        $this->retrievePageAlbums(true);
-        // will throw exception if something is wrong
+        // debug token first. Will throw exception if something is wront
+        $this->debugAccessToken();
 
+        // will throw exception if something is wrong
+        $this->retrievePageAlbums(true);
+
+        return TRUE;
+    }
+
+    private function debugAccessToken() {
+        $graphAlbLink = "https://graph.facebook.com/v3.2/debug_token?input_token=".$this->getAccessToken()."&access_token=".$this->getAccessToken();
+        $jsonData = @file_get_contents($graphAlbLink);
+        if ($jsonData === FALSE) {
+            $msg = "Error (4) retrieving expiration info for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
+        $expirationInfo = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
+        if (!$expirationInfo || !isset($expirationInfo['data'])) {
+            $msg = "Error (5) retrieving expiration info for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
+        $expiresAt = $expirationInfo['data']['expires_at'];
+        $isValid = $expirationInfo['data']['is_valid'];
+        $dataAccessExpiresAt = $expirationInfo['data']['data_access_expires_at'];
+
+        if (!$isValid) {
+            $msg = "Error (6) the access token is no longer valid for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
+        if ($expiresAt && time() > $expiresAt) {
+            $msg = "Error (7) the access token has expired for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
+        if (time() > $dataAccessExpiresAt) {
+            $msg = "Error (8) the access token is still valid, but the data access date has expired and must be reauthorized for Token with TYPO3 id: ".$this->getUid();
+            $this->logError($msg);
+            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+        }
         return TRUE;
     }
 
@@ -286,7 +325,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $fbAlbumObj = json_decode($jsonData, true, 512, JSON_BIGINT_AS_STRING);
 
         if ($testOnly) {
-            if (!isset($fbAlbumObj['data']) || !is_array(count($fbAlbumObj['data'])) || count($fbAlbumObj['data']) == 0) {
+            if (!isset($fbAlbumObj['data']) || !is_array($fbAlbumObj['data']) || count($fbAlbumObj['data']) == 0) {
                 $msg = "Connection successful but returned empty album list for Token with TYPO3 id: ".$this->getUid();
                 $this->logError($msg);
                 throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, null, $fbAlbumObj);
@@ -353,6 +392,11 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @return void
      */
     public function sync() {
+
+        // debug token first. Will throw exception if something is wront
+        $this->debugAccessToken();
+
+
         // TODO ? - do not sync if it was synced recently. Have a parameter to force it
 
 
