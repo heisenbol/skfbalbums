@@ -20,6 +20,15 @@
 			<trans-unit id="preview.label.singlealbum">
 				<source>Album</source>
 			</trans-unit>
+			<trans-unit id="preview.label.servelocally">
+				<source>Serve from local server</source>
+			</trans-unit>
+			<trans-unit id="preview.label.servelocallyyes">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="preview.label.servelocallyno">
+				<source>No</source>
+			</trans-unit>
 			<trans-unit id="preview.label.albumlistlayout">
 				<source>Album list layout</source>
 			</trans-unit>

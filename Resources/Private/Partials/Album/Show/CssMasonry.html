@@ -19,9 +19,9 @@
 				<div class="tx-skfbalbums cssmasonryphotolist masonryitem">
 				
 					<img 
-						src="{fbalbum:fbImage(photo: photo, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" 
+						src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" 
 						alt="" 
-						data-jslghtbx="{fbalbum:fbImage(photo: photo, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" 
+						data-jslghtbx="{fbalbum:fbImage(photo: photo, download:album.download, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" 
 						data-jslghtbx-caption="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}"
 						data-jslghtbx-group="group{cobjUid}">
 					</div>

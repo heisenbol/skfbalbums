@@ -88,8 +88,44 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $includeAlbumIds = '';
 
 
+    /**
+     * defaultdownload
+     *
+     * @var bool
+     */
+    protected $defaultdownload = false;
 
 
+    /**
+     * Returns the defaultdownload
+     *
+     * @return bool $defaultdownload
+     */
+    public function getDefaultdownload()
+    {
+        return $this->defaultdownload;
+    }
+
+    /**
+     * Sets the defaultdownload
+     *
+     * @param bool $defaultdownload
+     * @return void
+     */
+    public function setDefaultdownload($defaultdownload)
+    {
+        $this->defaultdownload = $defaultdownload;
+    }
+
+    /**
+     * Returns the boolean state of defaultdownload
+     *
+     * @return bool
+     */
+    public function isDefaultdownload()
+    {
+        return $this->defaultdownload;
+    }
 
 
     /**
@@ -478,6 +514,12 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
                 $album->setToken($this);
                 $album->setLastSynced(new \DateTime());
                 $album->setPid($this->getPid()); // needed in case called from scheduler
+                if ($this->getDefaultdownload()) {
+                    $album->setDownload(true);
+                }
+                else {
+                    $album->setDownload(false);
+                }
                 $this->albumRepository->add($album);
                 $albumsImported++;
                 $dbAlbumsToSyncPhotos[] = $album;

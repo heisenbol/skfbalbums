@@ -187,4 +187,17 @@ class Photo extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->album = $album;
     }
+
+    /**
+     * Returns the folder in the extension upload dir in case this photo would be stored locally
+     *
+     * @return string
+     */
+    public function getLocalFolder()
+    {
+        if (!$this->getFacebookId()) {
+            return FALSE;
+        }
+        return substr(md5($this->getFacebookId()), 0, 3);
+    }
 }

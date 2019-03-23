@@ -11,14 +11,14 @@ return [
 		'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-		'searchFields' => 'name,description,name_override,description_override,facebook_id,link,cover_photo_fb_id,last_synced,token',
+		'searchFields' => 'name,description,download,name_override,description_override,facebook_id,link,cover_photo_fb_id,last_synced,token',
         'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_album.svg'
     ],
     'interface' => [
-		'showRecordFieldList' => 'hidden, name, description, name_override, description_override, facebook_id, link, cover_photo_fb_id, last_synced, token',
+		'showRecordFieldList' => 'hidden, name, description, download, name_override, description_override, facebook_id, link, cover_photo_fb_id, last_synced, token',
     ],
     'types' => [
-		'1' => ['showitem' => 'hidden, name, description, name_override, description_override, facebook_id, link, cover_photo_fb_id, last_synced, token'],
+		'1' => ['showitem' => 'hidden, name, description, download, name_override, description_override, facebook_id, link, cover_photo_fb_id, last_synced, token'],
     ],
     'columns' => [
 		'hidden' => [
@@ -50,6 +50,13 @@ return [
 			    'cols' => 40,
 			    'rows' => 15,
 			    'eval' => 'trim'
+			],
+	    ],
+	    'download' => [
+	        'exclude' => false,
+	        'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_album.download',
+	        'config' => [
+			    'type' => 'check',
 			],
 	    ],
 	    'name_override' => [

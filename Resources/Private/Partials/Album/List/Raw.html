@@ -10,7 +10,7 @@
 					</f:link.action>
 				</h3>
 				<f:link.action action="show" arguments="{album : album}">
-					<img src="{fbalbum:fbImage(photo: album.coverPhoto, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
+					<img src="{fbalbum:fbImage(photo: album.coverPhoto, download:album.download, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				</f:link.action>
 				<p>
 					{f:if(condition: albumlistHideDescription, then: '', else: album.effectiveDescription)}

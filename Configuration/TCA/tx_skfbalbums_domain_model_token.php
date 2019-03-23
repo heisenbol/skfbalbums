@@ -13,10 +13,10 @@ return [
         'iconfile' => 'EXT:skfbalbums/Resources/Public/Icons/tx_skfbalbums_domain_model_token.svg'
     ],
     'interface' => [
-		'showRecordFieldList' => 'name, access_token, page_id, exclude_album_ids, include_album_ids',
+		'showRecordFieldList' => 'name, access_token, page_id, defaultdownload, exclude_album_ids, include_album_ids',
     ],
     'types' => [
-		'1' => ['showitem' => 'name, access_token, page_id, exclude_album_ids, include_album_ids'],
+		'1' => ['showitem' => 'name, access_token, page_id, defaultdownload, exclude_album_ids, include_album_ids'],
     ],
     'columns' => [
         'name' => [
@@ -44,6 +44,13 @@ return [
 			    'type' => 'input',
 			    'size' => 30,
 			    'eval' => 'trim,required'
+			],
+	    ],
+	    'defaultdownload' => [
+	        'exclude' => false,
+	        'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_token.defaultdownload',
+	        'config' => [
+			    'type' => 'check',
 			],
 	    ],
 	    'exclude_album_ids' => [

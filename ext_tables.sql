@@ -15,6 +15,7 @@ CREATE TABLE tx_skfbalbums_domain_model_album (
 	cover_photo_fb_id varchar(255) DEFAULT '' NOT NULL,
 	last_synced int(11) DEFAULT '0' NOT NULL,
 	token int(11) unsigned DEFAULT '0',
+	download tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -42,6 +43,7 @@ CREATE TABLE tx_skfbalbums_domain_model_token (
 	page_id varchar(255) DEFAULT '' NOT NULL,
 	exclude_album_ids text NOT NULL,
 	include_album_ids text NOT NULL,
+	defaultdownload tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

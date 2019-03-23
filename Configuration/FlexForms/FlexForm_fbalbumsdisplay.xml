@@ -209,7 +209,7 @@
 									</numIndex>
 									<numIndex index="3" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutraw</numIndex>
-										<numIndex index="1">raw</numIndex>
+										<numIndex index="1">Raw</numIndex>
 									</numIndex>
 								</items>
 								<maxitems>1</maxitems>

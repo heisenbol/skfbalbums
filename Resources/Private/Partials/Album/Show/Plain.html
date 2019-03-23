@@ -15,8 +15,8 @@
 	<f:for each="{album.photos}" as="photo">
 
 		<div style="display:inline-block">
-			<a href="{fbalbum:fbImage(photo: photo, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" target="_blank">
-				<img src="{fbalbum:fbImage(photo: photo, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
+			<a href="{fbalbum:fbImage(photo: photo, download:album.download, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}" target="_blank">
+				<img src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
 				<f:comment><br>{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}</f:comment>
 			</a>
 		</div>

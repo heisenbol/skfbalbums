@@ -1,6 +1,7 @@
 <?php
 namespace Skar\Skfbalbums\ViewHelpers;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -10,6 +11,7 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
     public function initializeArguments()
     {
         $this->registerArgument('photo', 'object', 'The photo object', TRUE);
+        $this->registerArgument('download', 'boolean', 'Serve from local server', TRUE);
         $this->registerArgument('size', 'string', 'Size of image', FALSE, 'medium');
         $this->registerArgument('useFbRedirectUrls', 'bool', 'Use of redirect urls', FALSE, FALSE);
         parent::initializeArguments();
@@ -22,19 +24,59 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		//$uriBuilder = $this->controllerContext->getUriBuilder();
 		$photo = $this->arguments['photo'];
 		$size = $this->arguments['size'];
+		$download = $this->arguments['download'];
 		$useFbRedirectUrls = $this->arguments['useFbRedirectUrls'];
 		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->arguments); 
 
-        $uri = 'EXT:skfbalbums/Resources/Public/Images/defaultalbumcover.png';
+        $defaultImageUri = 'Resources/Public/Images/defaultalbumcover.png';
         //$uri = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($uri);
         //$uri = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix($uri);
-		$uri = $this->renderingContext->getControllerContext()->getRequest()->getBaseUri().$uri;
+        //$uri = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath($uri);
+        $uri = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('skfbalbums').$defaultImageUri ;
+		//$uri = $this->renderingContext->getControllerContext()->getRequest()->getBaseUri().$defaultImageUri;
 
 		$result = $uri;
 
 		if ($photo && $photo->getImages()) {
 			$imagesArray = json_decode($photo->getImages(), true);
 			if ($imagesArray && is_array($imagesArray) && count($imagesArray) > 0) {
+				if ($download) {
+					// check if already downloaded
+					$folder = $photo->getLocalFolder();
+					$absoluteUploadDir = $this->getAbsoluteUploadDir();
+					$uploadDir = $absoluteUploadDir . $folder;
+				    if (!file_exists($uploadDir)) { // upload dir does not exist yet. Create it
+						$mkdirResult = mkdir($uploadDir);
+						if ($mkdirResult === false) {
+							return false;
+						}
+					}
+				    $dst = $this->getAbsoluteFilePath($photo->getFacebookId(), $folder);
+
+					// if not, download it and store it in upload folder
+				    if (!file_exists($dst)) { // not downloaded yet
+				    	$url = $this->getSizedImageUrl($imagesArray, 'large');
+					    $file = file_get_contents($url);
+					    if ($file === FALSE) {
+					      return false;
+					    }
+					    $saveResult = file_put_contents($dst, $file);
+					    if ($saveResult === FALSE) {
+					      return false;
+					    }
+				    }
+				    
+					// if everything was ok, return it's url
+					switch ($size) {
+					    case 'large':
+					        return $this->getImageUrl($dst, 3000, 3000);
+					    case 'small':
+					        return $this->getImageUrl($dst, 400, 400);
+					    case 'medium':
+					        return $this->getImageUrl($dst, 1000, 1000);
+					}
+					return $result.$absoluteUploadDir;
+				}
 				if ($useFbRedirectUrls) {
 					// 		https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal 
 					$fbId = $photo->getFacebookId();
@@ -52,7 +94,16 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 
 		return $result; // the viewhelper itself does not print enything
 	}
-
+	private function getImageUrl($absoluteFilePath, $maxWidth, $maxHeight, $quality = 95) {
+		$img = array();
+		$img['image.']['file.']['maxH']   = $maxWidth;
+		$img['image.']['file.']['maxW']   = $maxHeight;
+		$img['image.']['file.']['params']  ='-quality '.$quality;
+		$img['image.']['file'] = $absoluteFilePath;  
+		$configurationManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Configuration\ConfigurationManager::class);
+		$cObj = $configurationManager->getContentObject();
+		return $cObj->cObjGetSingle('IMG_RESOURCE', $img['image.']);
+	}
 	private function getSizedImageUrl($imagesArray, $size) {
 		$noOfImgs = count($imagesArray);
 		if ($noOfImgs == 1) {
@@ -94,5 +145,16 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		}
 		
 	}
+	private function getAbsoluteUploadDir() {
+		return PATH_site.'/'.$this->getRelativeUploadFolder();
+	}
+
+	private function getRelativeUploadFolder() {
+		return 'uploads/tx_skfbalbums/';
+	}
+  private function getAbsoluteFilePath($facebookId, $folder) {
+    $uploadDir = $this->getAbsoluteUploadDir();
+    return $uploadDir.$folder.'/'.$facebookId.'.jpg';
+  }
 }
 

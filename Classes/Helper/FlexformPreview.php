@@ -39,6 +39,7 @@ class FlexformPreview
                 }
                 if ($album) {
                     $singleAlbum = '<strong>'.htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.singlealbum')).':</strong> '.htmlspecialchars($album->getEffectiveName());
+                    $download = '<strong>'.htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.servelocally')).':</strong> '.($album->isDownload()?htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.servelocallyyes')):htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.servelocallyno')));
                 }
                 else {
                     $singleAlbum = '<strong>'.htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.singlealbum')).':</strong> '
@@ -101,6 +102,9 @@ class FlexformPreview
             $result .= '<ul>';
             if ($singleAlbum) {
                 $result .= "<li>$singleAlbum</li>";
+            }
+            if ($singleAlbum) {
+                $result .= "<li>$download</li>";
             }
             if ($storage) {
                 $result .= "<li>$storage</li>";

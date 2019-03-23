@@ -358,7 +358,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $showBacklink = false;
             }
         }
-
         if ($albumId) {
             $album = $this->albumRepository->findByUid( intval($albumId) );
         }
@@ -369,7 +368,6 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             return;
         }
         else {
-
             $album = new \Skar\Skfbalbums\Domain\Model\Album;
             $this->request->setArgument(self::ALBUM,$album);
             return;

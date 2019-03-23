@@ -91,6 +91,45 @@ class Album extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $hidden = false;
 
 
+    /**
+     * download
+     *
+     * @var bool
+     */
+    protected $download = false;
+
+
+    /**
+     * Returns the download
+     *
+     * @return bool $download
+     */
+    public function getDownload()
+    {
+        return $this->download;
+    }
+
+    /**
+     * Sets the download
+     *
+     * @param bool $download
+     * @return void
+     */
+    public function setDownload($download)
+    {
+        $this->download = $download;
+    }
+
+    /**
+     * Returns the boolean state of download
+     *
+     * @return bool
+     */
+    public function isDownload()
+    {
+        return $this->download;
+    }
+
 
 /**
      * Returns the hidden
