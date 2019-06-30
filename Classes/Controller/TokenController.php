@@ -93,6 +93,7 @@ class TokenController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         try {
             $token->checkconnection();
             $this->view->assign('result', TRUE);
+            $this->view->assign('warnings', $token->getWarnings());
         }
         catch (\Skar\Skfbalbums\Helper\CommunicationException $ex) {
             $this->view->assign('result', FALSE);

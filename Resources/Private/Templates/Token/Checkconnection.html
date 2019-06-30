@@ -10,6 +10,14 @@
 <f:if condition="{result}">
 	<f:then>
 		<p>Facebook connection was successful</p>
+		<f:if condition="{warnings}">
+			<p>Some warnings were generated:</p>
+			<ul>
+				<f:for each="{warnings}" as="warning">
+				<li>{warning}</li>
+				</f:for>
+			</ul>
+		</f:if>
 	</f:then>
 	<f:else>
 		<p>There was an error connecting to Facebook</p>

@@ -95,6 +95,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $defaultdownload = false;
 
+    protected $warnings = null;
 
     /**
      * Returns the defaultdownload
@@ -337,11 +338,27 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
         }
         if (time() > $dataAccessExpiresAt) {
-            $msg = "Error (8) the access token is still valid, but the data access date has expired and must be reauthorized for Token with TYPO3 id: ".$this->getUid();
+            $msg = "Warning (8) the access token is still valid, but the data access date has expired and must be reauthorized for Token with TYPO3 id: ".$this->getUid().". ";
+            $msg .= "Depending on the way you created the access token, you may or may not face problems with it. If the sync process continues without any other error, you can ignore this warning. ";
             $this->logError($msg);
-            throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
+            $this->addWarning($msg);
+            //throw new \Skar\Skfbalbums\Helper\CommunicationException($msg, 0, null, $http_response_header);
         }
         return TRUE;
+    }
+
+    public function addWarning($msg) {
+        if (!$this->warnings) {
+            $this->warnings = [];
+        }
+        $this->warnings[] = $msg;
+    }
+    public function getWarnings($clear = true) {
+        $result = $this->warnings;
+        if ($clear) {
+            $this->warnings = null;
+        }
+        return $result;
     }
 
     /**
