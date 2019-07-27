@@ -95,7 +95,12 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $defaultdownload = false;
 
-    protected $warnings = null;
+    /**
+     * warnings
+     *
+     * @var array
+     */
+    protected $warnings = [];
 
     /**
      * Returns the defaultdownload
