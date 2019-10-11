@@ -183,7 +183,7 @@ class Photo extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Skar\Skfbalbums\Domain\Model\Album $album
      * @return void
      */
-    public function setAlbum(\Skar\Skfbalbums\Domain\Model\Album $album)
+    public function setAlbum(?\Skar\Skfbalbums\Domain\Model\Album $album)
     {
         $this->album = $album;
     }

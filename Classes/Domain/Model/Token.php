@@ -585,6 +585,16 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $photosImported = 0;
         $photosUpdated = 0;
 
+        foreach($existingPhotos as $existingPhoto) {
+            $photo = $this->dbPhotosExistsInFbPhotos($existingPhoto, $albumFbPhotos);
+            if ($photo === FALSE) { // a photo exists in the db that is not in the photos retrieved from facebook for the current album. So delete it
+                $existingPhoto->setAlbum(null);
+                $this->photoRepository->update($existingPhoto);
+                $this->photoRepository->remove($existingPhoto);
+                $photosHidden++;
+            }
+        }
+
         foreach($albumFbPhotos as $albumFbPhoto) {
             $photo = $this->fbObjExistsInDb($albumFbPhoto, $existingPhotos);
             if ($photo !== FALSE) { // update existing
@@ -637,6 +647,18 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
 
+    private function dbPhotosExistsInFbPhotos( \Skar\Skfbalbums\Domain\Model\Photo $photo, $albumFbPhotos) {
+        if (!$albumFbPhotos) {
+            return FALSE;
+        }
+
+        foreach($albumFbPhotos as $facebookPhoto) {
+            if ($photo->getFacebookId() == $facebookPhoto['id']) {
+                return $photo;
+            }
+        }
+        return FALSE;
+    }
 
     private function dbAlbumExistsInFbAlbum( \Skar\Skfbalbums\Domain\Model\Album $album, $includedFbAlbums) {
         if (!$includedFbAlbums || !$album) { // checking !$album makes no sense
