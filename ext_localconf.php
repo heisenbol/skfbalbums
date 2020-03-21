@@ -17,6 +17,13 @@ call_user_func(
             ]
         );
 
+        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+
+        $iconRegistry->registerIcon(
+            'skfbalbum-icon',
+            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+            ['source' => 'EXT:skfbalbums/Resources/Public/Icons/user_plugin_fbalbumsdisplay.svg']
+        );
 
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
 			'mod {
@@ -24,6 +31,7 @@ call_user_func(
 					elements {
 						fbalbumsdisplay {
 							icon = EXT:skfbalbums/Resources/Public/Icons/user_plugin_fbalbumsdisplay.svg
+							iconIdentifier = skfbalbum-icon
 							title = LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_fbalbumsdisplay
 							description = LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_fbalbumsdisplay.description
 							tt_content_defValues {
