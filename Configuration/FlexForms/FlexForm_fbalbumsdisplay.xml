@@ -20,6 +20,7 @@
 			                <onChange>reload</onChange>
 			                <config>
 			                    <type>select</type>
+								<renderType>selectSingle</renderType>
 			                    <items type="array">
 			                        <numIndex index="1" type="array">
 			                            <numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list</numIndex>
@@ -126,6 +127,7 @@
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_list.layoutplain</numIndex>
@@ -194,6 +196,7 @@
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.layoutplain</numIndex>
@@ -271,6 +274,7 @@
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">Default</numIndex>
