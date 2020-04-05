@@ -177,7 +177,7 @@
 			</trans-unit>
 
 			<trans-unit id="flexforms.facebookredirecturls">
-				<source>Use Facebook redirect urls for image files instead of direct CDN urls</source>
+				<source>DOES NOT WORK ANYMORE! Use Facebook redirect urls for image files instead of direct CDN urls</source>
 			</trans-unit>
 
 			<trans-unit id="flexforms.album_single.record_storage_page_not_set">

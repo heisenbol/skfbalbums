@@ -49,7 +49,7 @@ class Photo extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * album
      *
      * @var \Skar\Skfbalbums\Domain\Model\Album
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $album = null;
 

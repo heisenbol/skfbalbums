@@ -33,7 +33,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * albumRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\AlbumRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $albumRepository = null;
 
@@ -41,14 +41,14 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * tokenRepository
      * 
      * @var \Skar\Skfbalbums\Domain\Repository\TokenRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $tokenRepository = null;
 
 
     /**
      * @var \TYPO3\CMS\Core\Page\PageRenderer
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $pageRenderer;
 
@@ -56,7 +56,7 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * photoRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\PhotoRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $photoRepository = null;
 

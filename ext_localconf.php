@@ -1,9 +1,11 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-call_user_func(
-    function($extKey)
-	{
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$pluginSignature]['skfbalbums'] =
+    \Skar\Skfbalbums\Helper\FlexformPreview::class . '->getExtensionSummary';
+
+$boot = function () {
+
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Skar.Skfbalbums',
@@ -48,19 +50,20 @@ call_user_func(
 
         if (TYPO3_MODE === 'BE') {
             // Page module hook - show flexform settings in page module
-            $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey);
+            $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase('skfbalbums');
             $pluginSignature = strtolower($extensionName) . '_fbalbumsdisplay'; 
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$pluginSignature][$_EXTKEY] =
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$pluginSignature]['skfbalbums'] =
                 \Skar\Skfbalbums\Helper\FlexformPreview::class . '->getExtensionSummary';
         }
-    },
-    $_EXTKEY
-);
+};
+
+$boot();
+unset($boot);
 
 
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Skar\Skfbalbums\Task\SyncTokens::class] = array(
-        'extension' => $_EXTKEY,
+        'extension' => 'skfbalbums',
         'title' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:scheduler_title',
         'description' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:scheduler_description',
         'additionalFields' => \Skar\Skfbalbums\Task\SyncTokens::class

@@ -9,21 +9,24 @@ class FlexformPreview
     private $flexformData = [];
 
     const LLPATH = 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:';
+
     /**
      * Preview plugin settings in page module
      *
      * @param array $params configuration array
+     * @return string
      */
     public function getExtensionSummary(array $params)
     {
-        $flexFormService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\FlexFormService::class);
+//        $flexFormService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\FlexFormService::class);
+        $flexFormService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
         $this->flexformData = $flexFormService->convertFlexFormContentToArray($params['row']['pi_flexform']);
 
-        $header = '<strong>' . htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'pi1_title')) . '</strong>';
         $displayMode = '';
         $storage = '';
         $albumLayout = '';
         $singleLayout = '';
+        $download = '';
         $singleAlbum = '';
         $uniteTheme = '';
         $redirectUrls = '';
@@ -95,6 +98,8 @@ class FlexformPreview
                 }
             }
 
+            $header = '<strong>' . htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'pi1_title')) . '</strong>';
+
             $result = $header;
             if ($displayMode) {
                 $result .= "<br>$displayMode";
@@ -103,7 +108,7 @@ class FlexformPreview
             if ($singleAlbum) {
                 $result .= "<li>$singleAlbum</li>";
             }
-            if ($singleAlbum) {
+            if ($download) {
                 $result .= "<li>$download</li>";
             }
             if ($storage) {

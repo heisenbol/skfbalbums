@@ -1,9 +1,8 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-call_user_func(
-    function($extKey)
-    {
+(function () {
+
 
         if (TYPO3_MODE === 'BE') {
 
@@ -17,8 +16,8 @@ call_user_func(
                 ],
                 [
                     'access' => 'user,group',
-                    'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_mod1.svg',
-                    'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_mod1.xlf',
+                    'icon'   => 'EXT:skfbalbums/Resources/Public/Icons/user_mod_mod1.svg',
+                    'labels' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_mod1.xlf',
                 ]
             );
 
@@ -40,8 +39,6 @@ call_user_func(
 
 
 
-    },
-    $_EXTKEY
-);
+})();
 
 

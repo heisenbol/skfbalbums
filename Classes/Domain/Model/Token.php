@@ -18,12 +18,11 @@ namespace Skar\Skfbalbums\Domain\Model;
 class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
-
     /**
      * albumRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\AlbumRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $albumRepository = null;
 
@@ -32,7 +31,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * albumRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\TokenRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $tokenRepository = null;
 
@@ -41,7 +40,7 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * photoRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\PhotoRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $photoRepository = null;
 
@@ -52,7 +51,6 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * name
      *
      * @var string
-     * @validate NotEmpty
      */
     protected $name = '';
 
@@ -60,7 +58,6 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Facebook Access Token
      *
      * @var string
-     * @validate NotEmpty
      */
     protected $accessToken = '';
 
@@ -69,7 +66,6 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Facebook Page ID
      *
      * @var string
-     * @validate NotEmpty
      */
     protected $pageId = '';
 
@@ -282,8 +278,9 @@ class Token extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     private function logError($message) {
-        global $BE_USER;
-        $BE_USER->simplelog($message, 'skfbalbums', 2);
+        $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+
+        $this->logger->error($message);
         /*
         $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $logger->info('Everything went fine.'. "  includeFolders is $includeFolders");

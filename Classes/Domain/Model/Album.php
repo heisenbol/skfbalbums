@@ -49,7 +49,7 @@ class Album extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * facebookId
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $facebookId = '';
 
@@ -71,7 +71,7 @@ class Album extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * token
      *
      * @var \Skar\Skfbalbums\Domain\Model\Token
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $token = null;
 

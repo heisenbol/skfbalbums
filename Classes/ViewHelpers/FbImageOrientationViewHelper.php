@@ -2,7 +2,7 @@
 namespace Skar\Skfbalbums\ViewHelpers;
 
 
-class FbImageOrientationViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FbImageOrientationViewHelper extends  \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper  {
 
    
 	/**

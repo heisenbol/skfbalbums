@@ -3,7 +3,7 @@ namespace Skar\Skfbalbums\Controller;
 
 /***
  *
- * This file is part of the "sktestnamefff" Extension for TYPO3 CMS.
+ * This file is part of the "skfbalbums" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -21,7 +21,7 @@ class TokenController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * TokenRepository
      *
      * @var \Skar\Skfbalbums\Domain\Repository\TokenRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $tokenRepository = null;
 

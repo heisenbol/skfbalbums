@@ -3,7 +3,7 @@ namespace Skar\Skfbalbums\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper  {
 
     /**
      * Initialize additional argument
@@ -32,7 +32,10 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
         //$uri = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($uri);
         //$uri = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix($uri);
         //$uri = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath($uri);
-        $uri = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('skfbalbums').$defaultImageUri ;
+        $uri = \TYPO3\CMS\Core\Utility\PathUtility::getAbsoluteWebPath(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('skfbalbums')).$defaultImageUri ;
+
+        $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+
 		//$uri = $this->renderingContext->getControllerContext()->getRequest()->getBaseUri().$defaultImageUri;
 
 		$result = $uri;
@@ -46,8 +49,9 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 					$absoluteUploadDir = $this->getAbsoluteUploadDir();
 					$uploadDir = $absoluteUploadDir . $folder;
 				    if (!file_exists($uploadDir)) { // upload dir does not exist yet. Create it
-						$mkdirResult = mkdir($uploadDir);
+						$mkdirResult = mkdir($uploadDir, 0700, TRUE);
 						if ($mkdirResult === false) {
+                            $logger->error("uploads/tx_skfbalbums folder does not exist and could not be created. Full path: ".$uploadDir);
 							return false;
 						}
 					}
@@ -146,7 +150,7 @@ class FbImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		
 	}
 	private function getAbsoluteUploadDir() {
-		return PATH_site.'/'.$this->getRelativeUploadFolder();
+		return \TYPO3\CMS\Core\Core\Environment::getPublicPath().'/'.$this->getRelativeUploadFolder();
 	}
 
 	private function getRelativeUploadFolder() {

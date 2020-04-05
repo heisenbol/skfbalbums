@@ -34,27 +34,7 @@
 			                </config>
 			            </TCEforms>
 			        </switchableControllerActions>
-<!--
-					<settings.albumForSingle>
-						<TCEforms>
-							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.album_single.selectalbum</label>
-			                <displayCond><![CDATA[FIELD:switchableControllerActions:=:Album->show;]]></displayCond>
 
-							<config>
-								<type>select</type>
-								<itemsProcFunc>Skar\Skfbalbums\Helper\ItemsProcFunc->user_singleAlbum</itemsProcFunc>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.albumForSingle>
-
--->
                     <settings.albumForSingle>
                         <TCEforms>
                             <exclude>1</exclude>
@@ -88,26 +68,6 @@
 						</TCEforms>
 					</settings.useFbRedirectUrls>
 
-
-
-
-					<!--
-					 <settings.quelle>
-					 <TCEforms>
-					 <exclude>1</exclude>
-					 <label>Datenquelle</label>
-					 <config>
-					 <type>group</type>
-					 <internal_type>db</internal_type>
-					 <allowed>pages</allowed>
-					 <size>1</size>
-					 <maxitems>1</maxitems>
-					 <minitems>1</minitems>
-					 <show_thumbs>1</show_thumbs>
-					 </config>
-					 </TCEforms>
-					 </settings.quelle>
-				-->
 
 				 </el>
 			 </ROOT>
