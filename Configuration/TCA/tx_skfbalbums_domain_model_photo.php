@@ -23,7 +23,7 @@ return [
     'columns' => [
 		'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:skfbalbums/Resources/Private/Language/locallang_db.xlf:tx_skfbalbums_domain_model_photo.hidden',
             'config' => [
                 'type' => 'check',
                 'items' => [

@@ -14,6 +14,9 @@
 			<trans-unit id="tx_skfbalbums_domain_model_album">
 				<source>Facebook Page Album</source>
 			</trans-unit>
+			<trans-unit id="tx_skfbalbums_domain_model_album.hidden">
+				<source>Hidden</source>
+			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_album.name">
 				<source>Name</source>
 			</trans-unit>
@@ -70,6 +73,9 @@
 			<trans-unit id="tx_skfbalbums_domain_model_photo">
 				<source>Facebook Photo</source>
 			</trans-unit>
+			<trans-unit id="tx_skfbalbums_domain_model_photo.hidden">
+				<source>Hidden</source>
+			</trans-unit>
 			<trans-unit id="tx_skfbalbums_domain_model_photo.facebook_id">
 				<source>Facebook Id</source>
 			</trans-unit>
@@ -85,6 +91,7 @@
 			<trans-unit id="tx_skfbalbums_domain_model_photo.album">
 				<source>Facebook Page Album</source>
 			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
