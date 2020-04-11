@@ -2,6 +2,7 @@
 namespace Skar\Skfbalbums\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Extbase\Service\ImageService;
 
 class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper  {
 
@@ -86,7 +87,7 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 
 		return $result; // the viewhelper itself does not print enything
 	}
-	private function getImageUrl($absoluteFilePath, $maxWidth, $maxHeight, $quality = 95) {
+	private function getImageUrl_OBSOLETE($absoluteFilePath, $maxWidth, $maxHeight, $quality = 95) {
 		$img = array();
 		$img['image.']['file.']['maxH']   = $maxWidth;
 		$img['image.']['file.']['maxW']   = $maxHeight;
@@ -96,6 +97,17 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 		$cObj = $configurationManager->getContentObject();
 		return $cObj->cObjGetSingle('IMG_RESOURCE', $img['image.']);
 	}
+    private function getImageUrl($absoluteFilePath, $maxWidth, $maxHeight) {
+        $objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+        $imageService= $objectManager->get(ImageService::class);
+        $image = $imageService->getImage($absoluteFilePath, null, false);
+        $processingInstructions = array(
+            'maxWidth' => $maxWidth,
+            'maxHeight' => $maxHeight
+        );
+        $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);
+        return $imageService->getImageUri($processedImage);
+    }
 	private function getSizedImageUrl($imagesArray, $size) {
 		$noOfImgs = count($imagesArray);
 		if ($noOfImgs == 1) {
