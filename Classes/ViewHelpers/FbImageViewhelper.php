@@ -87,6 +87,7 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 
 		return $result; // the viewhelper itself does not print enything
 	}
+	/*
 	private function getImageUrl_OBSOLETE($absoluteFilePath, $maxWidth, $maxHeight, $quality = 95) {
 		$img = array();
 		$img['image.']['file.']['maxH']   = $maxWidth;
@@ -96,7 +97,7 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 		$configurationManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Configuration\ConfigurationManager::class);
 		$cObj = $configurationManager->getContentObject();
 		return $cObj->cObjGetSingle('IMG_RESOURCE', $img['image.']);
-	}
+	}*/
     private function getImageUrl($absoluteFilePath, $maxWidth, $maxHeight) {
         $objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
         $imageService= $objectManager->get(ImageService::class);
