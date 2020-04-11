@@ -14,7 +14,7 @@
 
 	<f:for each="{album.photos}" as="photo">
 
-				<p><img src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
+				<p><img src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'medium')}" alt="" />
 				<br>{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}
 				</p>
 	</f:for>

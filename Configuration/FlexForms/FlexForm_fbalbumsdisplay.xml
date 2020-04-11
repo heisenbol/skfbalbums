@@ -59,15 +59,6 @@
                     </settings.albumForSingle>
 
 
-					<settings.useFbRedirectUrls>
-						<TCEforms>
-							<label>LLL:EXT:skfbalbums/Resources/Private/Language/locallang_be.xlf:flexforms.facebookredirecturls</label>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.useFbRedirectUrls>
-
 
 				 </el>
 			 </ROOT>

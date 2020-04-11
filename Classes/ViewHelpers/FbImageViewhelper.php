@@ -13,7 +13,6 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
         $this->registerArgument('photo', 'object', 'The photo object', TRUE);
         $this->registerArgument('download', 'boolean', 'Serve from local server', TRUE);
         $this->registerArgument('size', 'string', 'Size of image', FALSE, 'medium');
-        $this->registerArgument('useFbRedirectUrls', 'bool', 'Use of redirect urls', FALSE, FALSE);
         parent::initializeArguments();
     }
 
@@ -25,8 +24,7 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 		$photo = $this->arguments['photo'];
 		$size = $this->arguments['size'];
 		$download = $this->arguments['download'];
-		$useFbRedirectUrls = $this->arguments['useFbRedirectUrls'];
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->arguments); 
+		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->arguments);
 
         $defaultImageUri = 'Resources/Public/Images/defaultalbumcover.png';
         //$uri = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($uri);
@@ -81,18 +79,8 @@ class FbImageViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
 					}
 					return $result.$absoluteUploadDir;
 				}
-				if ($useFbRedirectUrls) {
-					// 		https://graph.facebook.com/PICTURE_FB_ID/picture?type=thumbnail|album|normal 
-					$fbId = $photo->getFacebookId();
-					// for album photos, only up to "normal" is supported, which is quite low resolution
-					if ($size == 'small') {
-						return "https://graph.facebook.com/$fbId/picture?type=thumbnail";
-					}
-					return "https://graph.facebook.com/$fbId/picture?type=normal";
-				}
-				else {
-					$result = $this->getSizedImageUrl($imagesArray, $size);
-				}
+
+    			$result = $this->getSizedImageUrl($imagesArray, $size);
 			}
 		}
 

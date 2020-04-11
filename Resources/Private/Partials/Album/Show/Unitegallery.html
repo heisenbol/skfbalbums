@@ -15,8 +15,8 @@
 	<div id="unitegallery{cobjUid}" style="display:none;" class="skfbalbumsunitegallery">
 		
 		<f:for each="{album.photos}" as="photo">
-			<img alt="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}" src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'small', useFbRedirectUrls: useFbRedirectUrls)}"
-				data-image="{fbalbum:fbImage(photo: photo, download:album.download, size: 'large', useFbRedirectUrls: useFbRedirectUrls)}"
+			<img alt="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}" src="{fbalbum:fbImage(photo: photo, download:album.download, size: 'small')}"
+				data-image="{fbalbum:fbImage(photo: photo, download:album.download, size: 'large')}"
 				data-description="{f:if(condition: photolistHideCaption, then: '', else: photo.effectiveCaption)}">
 		</f:for>
 			

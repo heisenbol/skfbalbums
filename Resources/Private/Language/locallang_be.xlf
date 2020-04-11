@@ -50,15 +50,6 @@
 			<trans-unit id="preview.label.unitethemenotset">
 				<source>Not set</source>
 			</trans-unit>
-			<trans-unit id="preview.label.redirecturls">
-				<source>Redirect urls</source>
-			</trans-unit>
-			<trans-unit id="preview.redirectno">
-				<source>No</source>
-			</trans-unit>
-			<trans-unit id="preview.redirectyes">
-				<source>Yes</source>
-			</trans-unit>
 
 
 			<trans-unit id="flexforms.sheet_general">
@@ -174,10 +165,6 @@
 
 			<trans-unit id="flexforms.album_single.selectalbum">
 				<source>Album for single view</source>
-			</trans-unit>
-
-			<trans-unit id="flexforms.facebookredirecturls">
-				<source>DOES NOT WORK ANYMORE! Use Facebook redirect urls for image files instead of direct CDN urls</source>
 			</trans-unit>
 
 			<trans-unit id="flexforms.album_single.record_storage_page_not_set">

@@ -8,7 +8,7 @@
 		<f:for each="{albums}" as="album">
 			<div class="tx-skfbalbums cssmasonryalbumlist masonryitem">
 				<f:link.action action="show" arguments="{album : album}">
-					<img src="{fbalbum:fbImage(photo: album.coverPhoto, download:album.download, size: 'medium', useFbRedirectUrls: useFbRedirectUrls)}" alt="" />
+					<img src="{fbalbum:fbImage(photo: album.coverPhoto, download:album.download, size: 'medium')}" alt="" />
 				</f:link.action>
 				
 

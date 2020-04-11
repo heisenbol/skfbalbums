@@ -29,7 +29,6 @@ class FlexformPreview
         $download = '';
         $singleAlbum = '';
         $uniteTheme = '';
-        $redirectUrls = '';
 
         if ($params['row']['list_type'] == 'skfbalbums_fbalbumsdisplay') {
             if (isset($this->flexformData['switchableControllerActions']) &&  $this->flexformData['switchableControllerActions'] == 'Album->show;') {
@@ -72,15 +71,7 @@ class FlexformPreview
                 }
             }
 
-            if (isset($this->flexformData['settings']['useFbRedirectUrls'])) {
 
-                $redirectUrls = '<strong>'.htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.redirecturls')).':</strong> '
-                                            .htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.redirectno'));
-                if ($this->flexformData['settings']['useFbRedirectUrls']) {
-                    $redirectUrls = '<strong>'.htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.label.redirecturls')).':</strong> '
-                                                .htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'preview.redirectyes'));
-                }
-            }
 
             $storageId = intval($params['row']['pages']);
             if (!$storageId) {
@@ -122,9 +113,6 @@ class FlexformPreview
             }
             if ($uniteTheme) {
                 $result .= "<li>$uniteTheme</li>";
-            }
-            if ($redirectUrls) {
-                $result .= "<li>$redirectUrls</li>";
             }
 
             $result .= '</ul>';
