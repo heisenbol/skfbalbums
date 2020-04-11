@@ -84,3 +84,15 @@ plugin.tx_skfbalbums._CSS_DEFAULT_STYLE (
 #        color:green;
 #    }
 )
+
+
+#\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+# register page title provider
+config.pageTitleProviders {
+  skfbalbums {
+    provider = Skar\Skfbalbums\Helper\PageTitleProvider
+    before = record
+    after = altPageTitle
+  }
+}
+#'));

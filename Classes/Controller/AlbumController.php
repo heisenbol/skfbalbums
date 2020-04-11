@@ -154,7 +154,9 @@ class AlbumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             return;
         }
         if (!$this->settings['photolistNoTitleHead']) {
-            $GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
+            $titleProvider = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Skar\Skfbalbums\Helper\PageTitleProvider::class);
+            $titleProvider->setTitle($album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName()));
+            //$GLOBALS['TSFE']->page['title'] = $album->getNameOverride()?htmlspecialchars($album->getNameOverride()):htmlspecialchars($album->getName());
         }
         $album->photos = $this->photoRepository->getPhotosByAlbum($album, false);
 
